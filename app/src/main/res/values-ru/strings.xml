@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VoluntHero</string>
+    <string name="username_hint">Имя пользователя</string>
+    <string name="password_hint">Пароль</string>
+    <string name="btn_continue">ПРОДОЛЖИТЬ</string>
+    <string name="go_to_reg">Нет аккаунта? Зарегистрироваться</string>
+    <string name="reg_title">Создать аккаунт</string>
+    <string name="nickname_hint">Никнейм</string>
+    <string name="email_hint">Электронная почта</string>
+    <string name="confirm_password_hint">Повторите пароль</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="btn_register">ЗАРЕГИСТРИРОВАТЬСЯ</string>
+    <string name="already_have_account">Уже есть аккаунт? Войти</string>
+</resources>

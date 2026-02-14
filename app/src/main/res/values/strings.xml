@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">VoluntHero</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="btn_continue">CONTINUE</string>
+    <string name="go_to_reg">No account? Register</string>
+    <string name="reg_title">Create Account</string>
+    <string name="nickname_hint">Nickname</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="email_hint">Email Address</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="already_have_account">Already have an account? Login</string>
+</resources>

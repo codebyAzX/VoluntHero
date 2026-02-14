@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VoluntHero</string>
+    <string name="username_hint">Մուտքանուն</string>
+    <string name="password_hint">Գաղտնաբառ</string>
+    <string name="btn_continue">ՇԱՐՈՒՆԱԿԵԼ</string>
+    <string name="go_to_reg">Չունե՞ք հաշիվ: Գրանցվել</string>
+    <string name="reg_title">Ստեղծել հաշիվ</string>
+    <string name="nickname_hint">Մականուն</string>
+    <string name="confirm_password_hint">Կրկնել գաղտնաբառը</string>
+    <string name="forgot_password">Մոռացե՞լ եք գաղտնաբառը</string>
+    <string name="email_hint">Էլ. փոստ</string>
+    <string name="btn_register">ԳՐԱՆՑՎԵԼ</string>
+    <string name="already_have_account">Արդեն ունե՞ք հաշիվ: Մուտք</string>
+</resources>
