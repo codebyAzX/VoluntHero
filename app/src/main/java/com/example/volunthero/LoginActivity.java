@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Locale;
 
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private LinearLayout llLangSwitch;
     private Button btnContinue;
     private TextInputEditText etEmail, etPassword;
+    private FirebaseAuth mAuth;
     private static boolean isInitialLocaleSet = false;
 
     @Override
@@ -41,59 +43,110 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Firebase
+        mAuth = FirebaseAuth.getInstance();
+
+        //View
         tvLogo = findViewById(R.id.tvLogo);
         tvGoToRegister = findViewById(R.id.tvGoToRegister);
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
         btnContinue = findViewById(R.id.btnContinue);
-
-        //լեզուներ
         tvLangSwitch = findViewById(R.id.tvLangSwitch);
         ivFlag = findViewById(R.id.ivFlag);
         llLangSwitch = findViewById(R.id.llLangSwitch);
-
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
 
         //градиент
-        applyGradientToLogo();
+        if (tvLogo != null) {
+            applyGradientToLogo();
+        }
 
-        //for language որ փոխվեն էլի
         updateLanguageUI();
 
-        llLangSwitch.setOnClickListener(v -> showLanguageMenu());
+        //язык
+        if (llLangSwitch != null) {
+            llLangSwitch.setOnClickListener(v -> showLanguageMenu());
+        }
 
-        tvForgotPassword.setOnClickListener(v -> {
-            String email = etEmail.getText().toString().trim();
-            if (email.isEmpty()) {
-                etEmail.setError("Введите email в поле логина");
-                return;
-            }
-            FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Письмо отправлено!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Ошибка: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        });
+        //рег
+        if (tvGoToRegister != null) {
+            tvGoToRegister.setOnClickListener(v -> {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            });
+        }
 
-        //դեպի ռեգեստրացիա
-        tvGoToRegister.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
-        });
+        //парол
+        if (tvForgotPassword != null) {
+            tvForgotPassword.setOnClickListener(v -> {
+                if (etEmail != null) {
+                    String email = etEmail.getText().toString().trim();
+                    if (email.isEmpty()) {
+                        etEmail.setError("Введите email");
+                        return;
+                    }
+                    mAuth.sendPasswordResetEmail(email)
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(this, "Письмо отправлено!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            });
+        }
 
-        btnContinue.setOnClickListener(v -> {
-            String email = etEmail.getText().toString().trim();
-            String password = etPassword.getText().toString().trim();
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Вход для " + email, Toast.LENGTH_SHORT).show();
+        //ЛОГИКА ВХОДА
+        if (btnContinue != null) {
+            btnContinue.setOnClickListener(v -> {
+                String email = etEmail.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
+
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this, task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (user != null) {
+                                    //ПЕРЕХОДИМ НА ЭКРАН РОЛЕЙ
+                                    try {
+                                        Intent intent = new Intent(LoginActivity.this, RoleSelectionActivity.class);
+                                        startActivity(intent);
+                                        finish(); //close экран логина
+                                    } catch (Exception e) {
+                                        //toast
+                                        Toast.makeText(this, "Ошибка перехода: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            } else {
+                                Toast.makeText(this, "Ошибка входа: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+            });
+        }
+    }
+
+    private void applyGradientToLogo() {
+        tvLogo.post(() -> {
+            try {
+                TextPaint paint = tvLogo.getPaint();
+                float width = paint.measureText(tvLogo.getText().toString());
+                if (width > 0) {
+                    Shader textShader = new LinearGradient(0, 0, width, 0,
+                            new int[]{Color.parseColor("#7E57C2"), Color.parseColor("#38FFD7")},
+                            null, Shader.TileMode.CLAMP);
+                    paint.setShader(textShader);
+                    tvLogo.invalidate();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
+
     private void setInitialLocale(String lang) {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
@@ -104,6 +157,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateLanguageUI() {
+        if (tvLangSwitch == null || ivFlag == null) return;
         String lang = getResources().getConfiguration().getLocales().get(0).getLanguage();
         if (lang.equals("hy")) {
             tvLangSwitch.setText("AM");
@@ -117,7 +171,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    //Հայերեան ֊> Րուսերեն -> Անգլեռեն
     private void showLanguageMenu() {
         PopupMenu popupMenu = new PopupMenu(this, llLangSwitch);
         popupMenu.getMenu().add(0, 1, 0, "Հայերեն (AM)");
@@ -134,6 +187,7 @@ public class LoginActivity extends AppCompatActivity {
         });
         popupMenu.show();
     }
+
     private void setLocale(String lang) {
         Locale myLocale = new Locale(lang);
         Resources res = getResources();
@@ -145,18 +199,5 @@ public class LoginActivity extends AppCompatActivity {
         Intent refresh = new Intent(this, LoginActivity.class);
         startActivity(refresh);
         finish();
-    }
-
-    private void applyGradientToLogo() {
-        tvLogo.post(() -> {
-            TextPaint paint = tvLogo.getPaint();
-            float width = paint.measureText(tvLogo.getText().toString());
-            Shader textShader = new LinearGradient(0, 0, width, 0,
-                    new int[]{Color.parseColor("#7E57C2"), //фиол
-                            Color.parseColor("#38FFD7")}, //бирюз
-                    null, Shader.TileMode.CLAMP);
-            paint.setShader(textShader);
-            tvLogo.invalidate();
-        });
     }
 }

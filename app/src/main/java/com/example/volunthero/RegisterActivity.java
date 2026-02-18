@@ -1,5 +1,6 @@
 package com.example.volunthero;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
@@ -28,10 +29,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // Firebase Auth
+        //Firebase
         mAuth = FirebaseAuth.getInstance();
 
-        // UI
+        //UI
         tvRegTitle = findViewById(R.id.tvRegTitle);
         etNickname = findViewById(R.id.etNickname);
         etRegEmail = findViewById(R.id.etRegEmail);
@@ -41,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         tvBackToLogin = findViewById(R.id.tvBackToLogin);
 
-        // градиент
+        //градиент
         tvRegTitle.post(() -> {
             Shader shader = new LinearGradient(
                     0, 0, tvRegTitle.getWidth(), 0,
@@ -51,18 +52,20 @@ public class RegisterActivity extends AppCompatActivity {
             tvRegTitle.invalidate();
         });
 
-        // кнопка рег.
+        //4.Логика регистрации
         btnRegister.setOnClickListener(v -> {
             String email = etRegEmail.getText().toString().trim();
             String password = etRegPassword.getText().toString().trim();
             String confirmPassword = etConfirmPassword.getText().toString().trim();
             String nickname = etNickname.getText().toString().trim();
 
+            //проверка на пустые поля
             if (email.isEmpty() || password.isEmpty() || nickname.isEmpty()) {
                 Toast.makeText(this, "Заполните все поля!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            //проверка совпадения паролей
             if (!password.equals(confirmPassword)) {
                 tilConfirmPassword.setError("Пароли не совпадают!");
                 return;
@@ -70,28 +73,32 @@ public class RegisterActivity extends AppCompatActivity {
                 tilConfirmPassword.setError(null);
             }
 
-            // Firebase
+            //создание пользователя в Firebase
             mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(task -> {
+                    .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user != null) {
-                                // письма для верификации
+                                //отправка письма для верификации
                                 user.sendEmailVerification()
                                         .addOnCompleteListener(verifyTask -> {
                                             if (verifyTask.isSuccessful()) {
                                                 Toast.makeText(RegisterActivity.this,
-                                                        "Письмо отправлено на " + email + ". Проверьте почту!",
+                                                        "Письмо отправлено на " + email + ". Подтвердите его!",
                                                         Toast.LENGTH_LONG).show();
-                                                finish(); // հետ на экран логина
+
+                                                //возвращаемся на экран логина
+                                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                                finish();
                                             } else {
                                                 Toast.makeText(RegisterActivity.this,
-                                                        "Ошибка отправки: " + verifyTask.getException().getMessage(),
+                                                        "Ошибка верификации: " + verifyTask.getException().getMessage(),
                                                         Toast.LENGTH_SHORT).show();
                                             }
                                         });
                             }
                         } else {
+                            //ошибка Firebase (например, слабый пароль или почта уже занята)
                             Toast.makeText(RegisterActivity.this,
                                     "Ошибка: " + task.getException().getMessage(),
                                     Toast.LENGTH_LONG).show();
@@ -99,7 +106,7 @@ public class RegisterActivity extends AppCompatActivity {
                     });
         });
 
-        // հետ դեպի մուտք
+        //"Назад к входу"
         tvBackToLogin.setOnClickListener(v -> finish());
     }
 }

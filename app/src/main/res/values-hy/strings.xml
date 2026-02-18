@@ -12,4 +12,25 @@
     <string name="email_hint">Էլ. փոստ</string>
     <string name="btn_register">ԳՐԱՆՑՎԵԼ</string>
     <string name="already_have_account">Արդեն ունե՞ք հաշիվ: Մուտք</string>
+    <string name="role_title">Ձեր դերը նախագծում:</string>
+    <string name="role_volunteer">Կամավոր</string>
+    <string name="role_volunteer_desc">Ուզում եմ օգնել և զարգանալ</string>
+    <string name="role_organizer">Կազմակերպիչ</string>
+    <string name="role_organizer_desc">Ստեղծում եմ նախագծեր և փնտրում թիմ</string>
+    <string name="btn_skip">Բաց թողնել</string>
+    <string name="vol_info_title">Կամավորի պրոֆիլ</string>
+    <string name="label_skills">Ձեր հմտությունները (կարող եք ընտրել մի քանիսը):</string>
+    <string name="skill_it">ՏՏ / Ծրագրավորում</string>
+    <string name="skill_languages">Լեզուներ (B1-B2)</string>
+    <string name="label_experience">Կամավորական փորձ (վկայականի վերբեռնում):</string>
+    <string name="btn_upload">Վերբեռնել ֆայլը</string>
+    <string name="btn_finish">Ավարտել</string>
+    <string name="step_format" formatted="false">Քայլ %1$d-ը %2$d-ից</string>
+    <string name="your_age" formatted="false">Ձեր տարիքը: %1$d</string>
+    <string name="your_interests">Ձեր հետաքրքրությունները</string>
+    <string name="your_skills">Ձեր հմտությունները</string>
+    <string name="experience_docs">Փորձ և սերտիֆիկատներ</string>
+    <string name="btn_next">Առաջ</string>
+    <string name="eco">Էկոլոգիա</string>
+    <string name="skill_design">Դիզայն</string>
 </resources>

@@ -5,34 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#121212"
-    android:padding="32dp">
+    android:padding="32dp"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
 
     <LinearLayout
         android:id="@+id/llLangSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="-20dp"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/ivFlag"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/flag_usa" /> <TextView
-        android:id="@+id/tvLangSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EN"
-        android:textColor="#38FFD7"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+            android:src="@drawable/flag_usa" />
+
+        <TextView
+            android:id="@+id/tvLangSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EN"
+            android:textColor="#38FFD7"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
