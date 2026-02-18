@@ -1,5 +1,6 @@
 package com.example.volunthero;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,14 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.slider.Slider;
 
-public class VolunteerInfoActivity extends BaseActivity { // ИЗМЕНЕНО: теперь наследуемся от BaseActivity
+public class VolunteerInfoActivity extends BaseActivity {
 
     private ProgressBar progressBar;
     private TextView tvStepTitle, tvAgeDisplay;
     private Slider ageSlider;
-    private Button btnNext;
+    private Button btnNext, btnBack, btnUpload;
 
-    //контейнеры шагов
     private LinearLayout stepAge, stepInterests, stepSkills, stepDocs;
 
     private int currentStep = 1;
@@ -32,27 +32,45 @@ public class VolunteerInfoActivity extends BaseActivity { // ИЗМЕНЕНО: �
         tvAgeDisplay = findViewById(R.id.tvAgeDisplay);
         ageSlider = findViewById(R.id.ageSlider);
         btnNext = findViewById(R.id.btnNext);
+        btnBack = findViewById(R.id.btnBack);
+        btnUpload = findViewById(R.id.btnUpload);
 
         stepAge = findViewById(R.id.stepAge);
         stepInterests = findViewById(R.id.stepInterests);
         stepSkills = findViewById(R.id.stepSkills);
         stepDocs = findViewById(R.id.stepDocs);
 
-        //слушатель слайдера
         ageSlider.addOnChangeListener((slider, value, fromUser) -> {
-            tvAgeDisplay.setText(getString(R.string.your_age, (int) value));
+            tvAgeDisplay.setText("Ваш возраст: " + (int) value);
         });
 
-        //неьт
         btnNext.setOnClickListener(v -> {
             if (currentStep < 4) {
                 currentStep++;
                 updateUI();
             } else {
-                Toast.makeText(this, getString(R.string.btn_finish), Toast.LENGTH_SHORT).show();
-                finish();
+                //ФИНАЛЬНЫЙ ПЕРЕХОД
+                Toast.makeText(this, "Профиль волонтера готов!", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(VolunteerInfoActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
+
+        //назад
+        btnBack.setOnClickListener(v -> {
+            if (currentStep > 1) {
+                currentStep--;
+                updateUI();
+            }
+        });
+
+        if (btnUpload != null) {
+            btnUpload.setOnClickListener(v -> {
+                Toast.makeText(this, "Загрузка скоро будет доступна!", Toast.LENGTH_SHORT).show();
+            });
+        }
 
         updateUI();
     }
@@ -60,7 +78,9 @@ public class VolunteerInfoActivity extends BaseActivity { // ИЗМЕНЕНО: �
     private void updateUI() {
         progressBar.setProgress(currentStep);
 
-        tvStepTitle.setText(getString(R.string.step_format, currentStep, 4));
+        btnBack.setVisibility(currentStep > 1 ? View.VISIBLE : View.GONE);
+
+        tvStepTitle.setText("ШАГ " + currentStep + " ИЗ 4");
 
         stepAge.setVisibility(View.GONE);
         stepInterests.setVisibility(View.GONE);
@@ -70,20 +90,19 @@ public class VolunteerInfoActivity extends BaseActivity { // ИЗМЕНЕНО: �
         switch (currentStep) {
             case 1:
                 stepAge.setVisibility(View.VISIBLE);
-                btnNext.setText(getString(R.string.btn_next));
-                tvAgeDisplay.setText(getString(R.string.your_age, (int) ageSlider.getValue()));
+                btnNext.setText("ДАЛЕЕ");
                 break;
             case 2:
                 stepInterests.setVisibility(View.VISIBLE);
-                btnNext.setText(getString(R.string.btn_next));
+                btnNext.setText("ДАЛЕЕ");
                 break;
             case 3:
                 stepSkills.setVisibility(View.VISIBLE);
-                btnNext.setText(getString(R.string.btn_next));
+                btnNext.setText("ДАЛЕЕ");
                 break;
             case 4:
                 stepDocs.setVisibility(View.VISIBLE);
-                btnNext.setText(getString(R.string.btn_finish));
+                btnNext.setText("ЗАВЕРШИТЬ");
                 break;
         }
     }

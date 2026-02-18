@@ -1,36 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">VoluntHero</string>
+
     <string name="username_hint">Մուտքանուն</string>
     <string name="password_hint">Գաղտնաբառ</string>
-    <string name="btn_continue">ՇԱՐՈՒՆԱԿԵԼ</string>
-    <string name="go_to_reg">Չունե՞ք հաշիվ: Գրանցվել</string>
+    <string name="btn_continue">Շարունակել</string>
+    <string name="go_to_reg">Չունե՞ք հաշիվ։ Գրանցվել</string>
+
     <string name="reg_title">Ստեղծել հաշիվ</string>
     <string name="nickname_hint">Մականուն</string>
+    <string name="email_hint">Էլեկտրոնային փոստ</string>
     <string name="confirm_password_hint">Կրկնել գաղտնաբառը</string>
     <string name="forgot_password">Մոռացե՞լ եք գաղտնաբառը</string>
-    <string name="email_hint">Էլ. փոստ</string>
-    <string name="btn_register">ԳՐԱՆՑՎԵԼ</string>
-    <string name="already_have_account">Արդեն ունե՞ք հաշիվ: Մուտք</string>
-    <string name="role_title">Ձեր դերը նախագծում:</string>
+    <string name="btn_register">Գրանցվել</string>
+    <string name="already_have_account">Արդեն ունե՞ք հաշիվ։ Մուտք գործել</string>
+
+    <string name="role_title">Ձեր դերը</string>
     <string name="role_volunteer">Կամավոր</string>
-    <string name="role_volunteer_desc">Ուզում եմ օգնել և զարգանալ</string>
+    <string name="role_volunteer_desc">Ցանկանում եմ օգնել և զարգանալ</string>
     <string name="role_organizer">Կազմակերպիչ</string>
-    <string name="role_organizer_desc">Ստեղծում եմ նախագծեր և փնտրում թիմ</string>
+    <string name="role_organizer_desc">Ստեղծում եմ նախագծեր և հավաքում թիմ</string>
+
     <string name="btn_skip">Բաց թողնել</string>
+
     <string name="vol_info_title">Կամավորի պրոֆիլ</string>
-    <string name="label_skills">Ձեր հմտությունները (կարող եք ընտրել մի քանիսը):</string>
+    <string name="label_skills">Ձեր հմտությունները (կարող եք ընտրել մի քանիսը)</string>
+
     <string name="skill_it">ՏՏ / Ծրագրավորում</string>
-    <string name="skill_languages">Լեզուներ (B1-B2)</string>
-    <string name="label_experience">Կամավորական փորձ (վկայականի վերբեռնում):</string>
-    <string name="btn_upload">Վերբեռնել ֆայլը</string>
+    <string name="skill_languages">Լեզուներ (A1–C1, խոսակցական և գրավոր)</string>
+    <string name="eco">Էկոլոգիա և շրջակա միջավայր</string>
+    <string name="skill_design">Դիզայն (UI/UX, գրաֆիկ)</string>
+    <string name="skill_marketing">Մարքեթինգ և SMM</string>
+    <string name="skill_management">Նախագծերի կառավարում</string>
+    <string name="skill_education">Կրթություն և մենթորություն</string>
+    <string name="skill_media">Մեդիա և բովանդակության ստեղծում</string>
+    <string name="skill_events">Միջոցառումների կազմակերպում</string>
+    <string name="skill_research">Հետազոտություն և վերլուծություն</string>
+    <string name="skill_fundraising">Ֆոնդհայթայթում</string>
+    <string name="skill_translation">Թարգմանություն</string>
+
+    <string name="label_experience">Կամավորական փորձ (վերբեռնել վկայականը)</string>
+
+    <string name="btn_upload">Վերբեռնել ֆայլ</string>
     <string name="btn_finish">Ավարտել</string>
-    <string name="step_format" formatted="false">Քայլ %1$d-ը %2$d-ից</string>
-    <string name="your_age" formatted="false">Ձեր տարիքը: %1$d</string>
+
+    <string name="step_format">Քայլ %1$d-ը %2$d-ից</string>
+    <string name="your_age">Ձեր տարիքը՝ %1$d</string>
     <string name="your_interests">Ձեր հետաքրքրությունները</string>
     <string name="your_skills">Ձեր հմտությունները</string>
-    <string name="experience_docs">Փորձ և սերտիֆիկատներ</string>
-    <string name="btn_next">Առաջ</string>
-    <string name="eco">Էկոլոգիա</string>
-    <string name="skill_design">Դիզայն</string>
+    <string name="experience_docs">Փորձ և վկայականներ</string>
+
+    <string name="btn_next">Հաջորդը</string>
+    <string name="btn_back" translatable="false">Վերադառնալ</string>
+
 </resources>

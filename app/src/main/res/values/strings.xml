@@ -1,36 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">VoluntHero</string>
+
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
-    <string name="btn_continue">CONTINUE</string>
+    <string name="btn_continue">Continue</string>
     <string name="go_to_reg">No account? Register</string>
-    <string name="reg_title">Create Account</string>
+
+    <string name="reg_title">Create an account</string>
     <string name="nickname_hint">Nickname</string>
-    <string name="email_hint">Email Address</string>
-    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="email_hint">Email address</string>
+    <string name="confirm_password_hint">Confirm password</string>
     <string name="forgot_password">Forgot password?</string>
-    <string name="btn_register">REGISTER</string>
-    <string name="already_have_account">Already have an account? Login</string>
-    <string name="role_title">Who are you in the project?</string>
+    <string name="btn_register">Register</string>
+    <string name="already_have_account">Already have an account? Log in</string>
+
+    <string name="role_title">Your role</string>
     <string name="role_volunteer">Volunteer</string>
     <string name="role_volunteer_desc">I want to help and grow</string>
     <string name="role_organizer">Organizer</string>
-    <string name="role_organizer_desc">I create projects and look for a team</string>
+    <string name="role_organizer_desc">I create projects and build a team</string>
+
     <string name="btn_skip">Skip</string>
-    <string name="vol_info_title">Volunteer Profile</string>
-    <string name="label_skills">Your Skills (select multiple):</string>
+
+    <string name="vol_info_title">Volunteer profile</string>
+    <string name="label_skills">Your skills (select multiple)</string>
+
     <string name="skill_it">IT / Programming</string>
-    <string name="skill_languages">Languages (B1-B2)</string>
-    <string name="label_experience">Volunteer Experience (Upload certificate):</string>
-    <string name="btn_upload">Upload File</string>
+    <string name="skill_languages">Languages (A1–C1, spoken &amp; written)</string>
+    <string name="eco">Ecology &amp; Environment</string>
+    <string name="skill_design">Design (UI/UX, graphic)</string>
+    <string name="skill_marketing">Marketing &amp; SMM</string>
+    <string name="skill_management">Project management</string>
+    <string name="skill_education">Education &amp; mentoring</string>
+    <string name="skill_media">Media &amp; content creation</string>
+    <string name="skill_events">Event organization</string>
+    <string name="skill_research">Research &amp; analytics</string>
+    <string name="skill_fundraising">Fundraising</string>
+    <string name="skill_translation">Translation</string>
+
+    <string name="label_experience">Volunteer experience (upload certificate)</string>
+
+    <string name="btn_upload">Upload file</string>
     <string name="btn_finish">Finish</string>
+
     <string name="step_format">Step %1$d of %2$d</string>
     <string name="your_age">Your age: %1$d</string>
     <string name="your_interests">Your interests</string>
     <string name="your_skills">Your skills</string>
     <string name="experience_docs">Experience and certificates</string>
+
     <string name="btn_next">Next</string>
-    <string name="eco">Ecology</string>
-    <string name="skill_design">Design</string>
+    <string name="btn_back" translatable="false">Back</string>
+
 </resources>

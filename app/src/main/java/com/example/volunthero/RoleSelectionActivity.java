@@ -6,10 +6,9 @@ import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.google.android.material.card.MaterialCardView;
 
-public class RoleSelectionActivity extends BaseActivity { // НАСЛЕДУЕМСЯ ОТ BASE
+public class RoleSelectionActivity extends BaseActivity {
 
     private MaterialCardView cardVolunteer, cardOrganizer;
     private TextView tvRoleTitle;
@@ -42,7 +41,7 @@ public class RoleSelectionActivity extends BaseActivity { // НАСЛЕДУЕМ�
 
         if (cardOrganizer != null) {
             cardOrganizer.setOnClickListener(v -> {
-                Toast.makeText(this, getString(R.string.role_organizer) + ": In dev", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, OrganizerInfoActivity.class));
             });
         }
     }

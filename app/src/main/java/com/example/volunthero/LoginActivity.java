@@ -1,29 +1,23 @@
 package com.example.volunthero;
 
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.os.Bundle;
 import android.text.TextPaint;
-import android.util.DisplayMetrics;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Locale;
-
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity { //BASE
 
     private TextView tvLogo, tvGoToRegister, tvForgotPassword, tvLangSwitch;
     private ImageView ivFlag;
@@ -31,15 +25,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnContinue;
     private TextInputEditText etEmail, etPassword;
     private FirebaseAuth mAuth;
-    private static boolean isInitialLocaleSet = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (!isInitialLocaleSet) {
-            setInitialLocale("hy");
-            isInitialLocaleSet = true;
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -111,13 +99,11 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 if (user != null) {
-                                    //ПЕРЕХОДИМ НА ЭКРАН РОЛЕЙ
                                     try {
                                         Intent intent = new Intent(LoginActivity.this, RoleSelectionActivity.class);
                                         startActivity(intent);
-                                        finish(); //close экран логина
+                                        finish();
                                     } catch (Exception e) {
-                                        //toast
                                         Toast.makeText(this, "Ошибка перехода: " + e.getMessage(), Toast.LENGTH_LONG).show();
                                     }
                                 }
@@ -147,18 +133,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void setInitialLocale(String lang) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Resources res = getResources();
-        Configuration config = res.getConfiguration();
-        config.setLocale(locale);
-        res.updateConfiguration(config, res.getDisplayMetrics());
-    }
-
     private void updateLanguageUI() {
         if (tvLangSwitch == null || ivFlag == null) return;
-        String lang = getResources().getConfiguration().getLocales().get(0).getLanguage();
+        String lang = LocaleHelper.getLanguage(this);
         if (lang.equals("hy")) {
             tvLangSwitch.setText("AM");
             ivFlag.setImageResource(R.drawable.flag_armenia);
@@ -189,12 +166,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setLocale(String lang) {
-        Locale myLocale = new Locale(lang);
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.setLocale(myLocale);
-        res.updateConfiguration(conf, dm);
+        //сохраняем выбор в настройки
+        LocaleHelper.setLocale(this, lang);
 
         Intent refresh = new Intent(this, LoginActivity.class);
         startActivity(refresh);

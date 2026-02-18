@@ -1,37 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">VoluntHero</string>
+
     <string name="username_hint">Имя пользователя</string>
     <string name="password_hint">Пароль</string>
-    <string name="btn_continue">ПРОДОЛЖИТЬ</string>
+    <string name="btn_continue">Продолжить</string>
     <string name="go_to_reg">Нет аккаунта? Зарегистрироваться</string>
+
     <string name="reg_title">Создать аккаунт</string>
     <string name="nickname_hint">Никнейм</string>
     <string name="email_hint">Электронная почта</string>
     <string name="confirm_password_hint">Повторите пароль</string>
     <string name="forgot_password">Забыли пароль?</string>
-    <string name="btn_register">ЗАРЕГИСТРИРОВАТЬСЯ</string>
+    <string name="btn_register">Зарегистрироваться</string>
     <string name="already_have_account">Уже есть аккаунт? Войти</string>
-    <string name="role_title">Ваша роль в проекте:</string>
+
+    <string name="role_title">Ваша роль</string>
     <string name="role_volunteer">Волонтер</string>
     <string name="role_volunteer_desc">Хочу помогать и развиваться</string>
     <string name="role_organizer">Организатор</string>
-    <string name="role_organizer_desc">Создаю проекты и ищу команду</string>
+    <string name="role_organizer_desc">Создаю проекты и собираю команду</string>
+
     <string name="btn_skip">Пропустить</string>
-    <string name="vol_info_title">Анкета волонтера</string>
-    <string name="label_age">Ваш возраст:</string>
-    <string name="label_skills">Ваши навыки (выберите несколько):</string>
+
+    <string name="vol_info_title">Профиль волонтера</string>
+    <string name="label_skills">Ваши навыки (можно выбрать несколько)</string>
+
     <string name="skill_it">IT / Программирование</string>
-    <string name="skill_languages">Языки (B1-B2)</string>
-    <string name="label_experience">Опыт волонтерства (скан сертификата):</string>
+    <string name="skill_languages">Языки (A1–C1, устно и письменно)</string>
+    <string name="eco">Экология и окружающая среда</string>
+    <string name="skill_design">Дизайн (UI/UX, графика)</string>
+    <string name="skill_marketing">Маркетинг и SMM</string>
+    <string name="skill_management">Управление проектами</string>
+    <string name="skill_education">Образование и наставничество</string>
+    <string name="skill_media">Медиа и создание контента</string>
+    <string name="skill_events">Организация мероприятий</string>
+    <string name="skill_research">Исследования и аналитика</string>
+    <string name="skill_fundraising">Фандрайзинг</string>
+    <string name="skill_translation">Переводы</string>
+
+    <string name="label_experience">Опыт волонтерства (загрузите сертификат)</string>
+
     <string name="btn_upload">Загрузить файл</string>
     <string name="btn_finish">Завершить</string>
+
     <string name="step_format">Шаг %1$d из %2$d</string>
     <string name="your_age">Ваш возраст: %1$d</string>
     <string name="your_interests">Ваши интересы</string>
     <string name="your_skills">Ваши навыки</string>
     <string name="experience_docs">Опыт и сертификаты</string>
+
     <string name="btn_next">Далее</string>
-    <string name="eco">Экология</string>
-    <string name="skill_design">Дизайн</string>
+    <string name="btn_back" translatable="false">Назад</string>
 </resources>

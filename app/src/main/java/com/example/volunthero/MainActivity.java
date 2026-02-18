@@ -1,29 +1,34 @@
 package com.example.volunthero;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+
+    private boolean isOrganizer = false; //Firebase завтра
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (savedInstanceState == null) {
+            loadFragment(isOrganizer ? new OrganizerHomeFragment() : new VolunteerHomeFragment());
+        }
 
-        TextView tvLogo = findViewById(R.id.tvLogo);
+        setupNavigation();
+    }
 
-//градиент
-        Shader textShader = new LinearGradient(0, 0, tvLogo.getPaint().measureText("VoluntHero"), 0,
-                new int[]{Color.parseColor("#7E57C2"), Color.parseColor("#26C6DA")},
-                null, Shader.TileMode.CLAMP);
-        tvLogo.getPaint().setShader(textShader);
+    private void loadFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_container, fragment)
+                .commit();
+    }
 
+    private void setupNavigation() {
+        findViewById(R.id.navHome).setOnClickListener(v -> {
+            loadFragment(isOrganizer ? new OrganizerHomeFragment() : new VolunteerHomeFragment());
+        });
     }
 }
