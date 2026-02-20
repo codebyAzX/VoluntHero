@@ -1,197 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212">
+    android:background="#121212"
+    android:paddingHorizontal="24dp">
 
-    <LinearLayout
-        android:id="@+id/headerArea"
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="48dp"
-        android:paddingHorizontal="24dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginTop="54dp"
+        app:indicatorColor="#38FFD7"
+        app:trackColor="#1E1E1E"
+        android:max="4"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:max="4"
-            android:progress="1"
-            android:progressTint="#38FFD7" />
-
-        <TextView
-            android:id="@+id/tvStepTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textColor="#D1C4E9"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            android:textAllCaps="true"
-            tools:text="STEP 1 OF 4" />
-    </LinearLayout>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mainCard"
-        android:layout_width="0dp"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="20dp"
-        app:cardBackgroundColor="#1E1E1E"
-        app:cardCornerRadius="28dp"
-        app:cardElevation="0dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="#333333"
-        app:layout_constraintBottom_toTopOf="@id/footerArea"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerArea">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="12dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/layoutButtons"
+        app:layout_constraintTop_toBottomOf="@id/progressBar">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_background"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvStepTitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp">
+                android:layout_gravity="start"
+                android:textColor="#38FFD7"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"/>
 
-                <LinearLayout
-                    android:id="@+id/stepAge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-                    <TextView
-                        android:id="@+id/tvAgeDisplay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#FFFFFF"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        tools:text="Your age: 24" />
-                    <com.google.android.material.slider.Slider
-                        android:id="@+id/ageSlider"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:valueFrom="14"
-                        android:valueTo="117"
-                        android:value="14"
-                        app:thumbColor="#38FFD7" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/stepInterests"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ваши интересы"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                    <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/chipGroupInterests"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/stepSkills"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ваши навыки"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                    <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/chipGroupSkills"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/stepDocs"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:visibility="gone">
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@android:drawable/stat_sys_upload"
-                        app:tint="#D1C4E9" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Загрузите документы (при наличии)"
-                        android:textColor="#FFFFFF"
-                        android:textAlignment="center" />
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnUpload"
-                        android:layout_width="wrap_content"
-                        android:layout_height="56dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/secondary_button_background"
-                        android:text="ЗАГРУЗИТЬ"
-                        android:textColor="#FFFFFF"
-                        android:paddingHorizontal="24dp" />
-                </LinearLayout>
-
+            <LinearLayout android:id="@+id/stepAge" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical" android:visibility="visible">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/birth_date_title" android:textColor="#FFF" android:textSize="22sp" android:textStyle="bold" android:layout_marginBottom="20dp"/>
+                <DatePicker android:id="@+id/datePicker" android:layout_width="wrap_content" android:layout_height="wrap_content" android:datePickerMode="spinner" android:calendarViewShown="false" android:theme="@style/CustomPickerTheme" />
+                <TextView android:id="@+id/tvCalculatedAge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:textColor="#38FFD7" android:textSize="18sp" android:textStyle="bold" />
             </LinearLayout>
-        </ScrollView>
-    </com.google.android.material.card.MaterialCardView>
 
-    <LinearLayout
-        android:id="@+id/footerArea"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="40dp"
-        android:paddingHorizontal="24dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+            <LinearLayout android:id="@+id/stepInterests" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/interests_title" android:textColor="#FFF" android:textSize="22sp" android:textStyle="bold" />
+                <com.google.android.material.chip.ChipGroup android:id="@+id/chipGroupInterests" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" app:chipSpacing="8dp" />
+                <EditText android:id="@+id/etOtherInterest" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:hint="@string/other_hint" android:textColor="#FFF" android:backgroundTint="#38FFD7"/>
+            </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnBack"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/secondary_button_background"
-            android:text="←"
-            android:textColor="#FFFFFF"
-            android:textSize="22sp"
-            android:visibility="gone" />
+            <LinearLayout android:id="@+id/stepSkills" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/skills_title" android:textColor="#FFF" android:textSize="22sp" android:textStyle="bold" />
+                <com.google.android.material.chip.ChipGroup android:id="@+id/chipGroupSkills" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" app:chipSpacing="8dp" />
+                <EditText android:id="@+id/etOtherSkill" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:hint="@string/add_skill_hint" android:textColor="#FFF" android:backgroundTint="#38FFD7"/>
+            </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnNext"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_weight="1"
-            android:background="@drawable/gradient_button_background"
-            android:text="ДАЛЕЕ"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+            <LinearLayout android:id="@+id/stepDocs" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center" android:orientation="vertical" android:visibility="gone">
+                <ImageView android:layout_width="100dp" android:layout_height="100dp" android:src="@drawable/ic_upload_cloud" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/experience_title" android:textColor="#FFF" android:textSize="20sp" android:textStyle="bold" android:gravity="center" />
+                <TextView android:id="@+id/tvSelectedFilesCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/no_files_selected" android:textColor="#38FFD7" />
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnUpload" android:layout_width="220dp" android:layout_height="55dp" android:layout_marginTop="24dp" android:background="@drawable/secondary_button_background" android:text="@string/select_files" android:textAllCaps="false" android:textColor="#FFF" />
+                <TextView android:id="@+id/btnNoExperience" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="32dp" android:text="@string/no_experience" android:textColor="#7E57C2" android:textStyle="bold" android:clickable="true" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout android:id="@+id/layoutButtons" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="50dp" app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnBack" android:layout_width="0dp" android:layout_height="60dp" android:layout_weight="1" android:layout_marginEnd="16dp" android:text="@string/btn_back" android:textAllCaps="false" android:background="@drawable/secondary_button_background" android:textColor="#FFF" android:visibility="gone" />
+        <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnNext" android:layout_width="0dp" android:layout_height="60dp" android:layout_weight="2" android:text="@string/btn_next" android:textAllCaps="false" android:background="@drawable/gradient_button_background" android:textColor="#FFF" android:textStyle="bold" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

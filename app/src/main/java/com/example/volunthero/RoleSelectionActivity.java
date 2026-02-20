@@ -19,6 +19,7 @@ public class RoleSelectionActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_role_selection);
 
+        //инициализация
         tvRoleTitle = findViewById(R.id.tvRoleTitle);
         cardVolunteer = findViewById(R.id.cardVolunteer);
         cardOrganizer = findViewById(R.id.cardOrganizer);
@@ -29,16 +30,19 @@ public class RoleSelectionActivity extends BaseActivity {
 
         setupLocalizedTexts();
 
+        //градиент
         if (tvRoleTitle != null) {
             applyGradientToTitle();
         }
 
+        //клик-вол
         if (cardVolunteer != null) {
             cardVolunteer.setOnClickListener(v -> {
                 startActivity(new Intent(this, VolunteerInfoActivity.class));
             });
         }
 
+        //клик-орг
         if (cardOrganizer != null) {
             cardOrganizer.setOnClickListener(v -> {
                 startActivity(new Intent(this, OrganizerInfoActivity.class));

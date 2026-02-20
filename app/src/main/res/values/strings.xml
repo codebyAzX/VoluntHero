@@ -20,7 +20,7 @@
     <string name="role_volunteer">Volunteer</string>
     <string name="role_volunteer_desc">I want to help and grow</string>
     <string name="role_organizer">Organizer</string>
-    <string name="role_organizer_desc">I create projects and build a team</string>
+    <string name="role_organizer_desc">I create projects and look for volunteers</string>
 
     <string name="btn_skip">Skip</string>
 
@@ -51,7 +51,41 @@
     <string name="your_skills">Your skills</string>
     <string name="experience_docs">Experience and certificates</string>
 
+    <string name="birth_date_title">Date of Birth</string>
+    <string name="interests_title">Interests</string>
+    <string name="skills_title">Skills</string>
+    <string name="verification_title">Verification</string>
+    <string name="other_hint">Other...</string>
+    <string name="step">Step</string>
+    <string name="of">of</string>
+    <string name="add_skill_hint">Add a skill...</string>
+    <string name="experience_title">Experience\n(Certificates/Docs)</string>
+    <string name="no_experience">I don\'t have experience yet</string>
+    <string name="select_files">Select Files</string>
+    <string name="no_files_selected">No files selected</string>
+    <string name="files_selected">Files selected</string>
+    <string name="welcome_hero">Welcome to VoluntHero!</string>
+    <string name="btn_back">Back</string>
+    <string name="years_unit">years old</string>
     <string name="btn_next">Next</string>
-    <string name="btn_back" translatable="false">Back</string>
 
+    <string-array name="interests_array">
+        <item>Ecology</item>
+        <item>Sports</item>
+        <item>Medicine</item>
+        <item>IT &amp; Technology</item>
+        <item>Animals</item>
+        <item>Elderly Help</item>
+        <item>Education</item>
+        <item>Art &amp; Culture</item>
+    </string-array>
+
+    <string-array name="skills_array">
+        <item>Programming</item>
+        <item>First Aid</item>
+        <item>Driving</item>
+        <item>Languages</item>
+        <item>Management</item>
+        <item>Design</item>
+    </string-array>
 </resources>

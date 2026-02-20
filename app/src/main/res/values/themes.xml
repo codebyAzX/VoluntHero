@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.VoluntHero" parent="Base.Theme.VoluntHero" />
+
+    <style name="CustomPickerTheme" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">#38FFD7</item>
+        <item name="android:textColorSecondary">#FFFFFF</item>
+        <item name="android:dialogTheme">@style/Theme.AppCompat.DayNight.Dialog</item>
+    </style>
 </resources>

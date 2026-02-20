@@ -20,7 +20,7 @@
     <string name="role_volunteer">Կամավոր</string>
     <string name="role_volunteer_desc">Ցանկանում եմ օգնել և զարգանալ</string>
     <string name="role_organizer">Կազմակերպիչ</string>
-    <string name="role_organizer_desc">Ստեղծում եմ նախագծեր և հավաքում թիմ</string>
+    <string name="role_organizer_desc">Ստեղծում են նախագծեր և հավաքում կամավորներ</string>
 
     <string name="btn_skip">Բաց թողնել</string>
 
@@ -52,6 +52,42 @@
     <string name="experience_docs">Փորձ և վկայականներ</string>
 
     <string name="btn_next">Հաջորդը</string>
-    <string name="btn_back" translatable="false">Վերադառնալ</string>
 
+    <string name="verification_title">Վերիֆիկացիա</string>
+    <string name="other_hint">Այլ տարբերակ...</string>
+    <string name="add_skill_hint">Ավելացնել հմտություն...</string>
+
+    <string name="birth_date_title">Ծննդյան ամսաթիվ</string>
+    <string name="interests_title">Հետաքրքրություններ</string>
+    <string name="skills_title">Հմտություններ</string>
+    <string name="experience_title">Փորձ\n(սերտիֆիկատներ)</string>
+    <string name="no_experience">Դեռ փորձ չունեմ</string>
+    <string name="select_files">Ընտրել ֆայլերը</string>
+    <string name="no_files_selected">Ֆայլեր ընտրված չեն</string>
+    <string name="files_selected">Ընտրված են ֆայլեր</string>
+    <string name="welcome_hero">Բարի գալուստ VoluntHero:</string>
+    <string name="step">Քայլ</string>
+    <string name="of"> -ից</string>
+    <string name="btn_back">Հետ</string>
+    <string name="years_unit">տարեկան</string>
+
+    <string-array name="interests_array">
+        <item>Էկոլոգիա</item>
+        <item>Սպորտ</item>
+        <item>Բժշկություն</item>
+        <item>ՏՏ և Տեխնոլոգիաներ</item>
+        <item>Կենդանիներ</item>
+        <item>Օգնություն տարեցներին</item>
+        <item>Կրթություն</item>
+        <item>Արվեստ և Մշակույթ</item>
+    </string-array>
+
+    <string-array name="skills_array">
+        <item>Ծրագրավորում</item>
+        <item>Առաջին օգնություն</item>
+        <item>Վարորդական հմտություններ</item>
+        <item>Օտար լեզուներ</item>
+        <item>Կառավարում</item>
+        <item>Դիզայն</item>
+    </string-array>
 </resources>
