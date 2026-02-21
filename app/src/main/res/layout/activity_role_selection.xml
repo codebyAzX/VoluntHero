@@ -22,25 +22,25 @@
             android:id="@+id/tvRoleTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="sans-serif-black"
             android:text="@string/role_title"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
-            android:textSize="49sp"
+            android:textSize="45sp"
             android:textStyle="bold"
-            android:maxLines="1"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="30sp"
-            app:autoSizeMaxTextSize="49sp" />
+            android:lines="1"
+            app:autoSizeMaxTextSize="45sp"
+            app:autoSizeMinTextSize="24sp"
+            app:autoSizeTextType="uniform" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardVolunteer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
@@ -51,14 +51,15 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:padding="12dp">
+                android:layout_height="140dp"
+                android:padding="16dp">
 
                 <ImageView
                     android:id="@+id/ivVolunteerIcon"
                     android:layout_width="85dp"
                     android:layout_height="85dp"
                     android:src="@drawable/vol_icon"
+                    android:scaleType="centerInside"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -68,8 +69,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/ivVolunteerIcon"
@@ -77,23 +77,26 @@
 
                     <TextView
                         android:id="@+id/tvVolunteerTitle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
                         android:text="@string/role_volunteer"
                         android:textColor="#FFFFFF"
-                        android:textSize="24sp"
+                        android:textSize="22sp"
                         android:textStyle="bold"
+                        android:gravity="center"
+                        android:lines="1"
                         app:autoSizeTextType="uniform" />
 
                     <TextView
                         android:id="@+id/tvVolunteerDesc"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/role_volunteer_desc"
-                        android:textAlignment="center"
                         android:textColor="#BBBBBB"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:lines="2"
+                        android:ellipsize="end" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -103,6 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
@@ -113,14 +117,15 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:padding="12dp">
+                android:layout_height="140dp"
+                android:padding="16dp">
 
                 <ImageView
                     android:id="@+id/ivOrganizerIcon"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
                     android:src="@drawable/org_icon"
+                    android:scaleType="centerInside"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -130,8 +135,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/ivOrganizerIcon"
@@ -139,23 +143,26 @@
 
                     <TextView
                         android:id="@+id/tvOrganizerTitle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
                         android:text="@string/role_organizer"
                         android:textColor="#FFFFFF"
-                        android:textSize="24sp"
+                        android:textSize="22sp"
                         android:textStyle="bold"
+                        android:gravity="center"
+                        android:lines="1"
                         app:autoSizeTextType="uniform" />
 
                     <TextView
                         android:id="@+id/tvOrganizerDesc"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/role_organizer_desc"
-                        android:textAlignment="center"
                         android:textColor="#BBBBBB"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:lines="2"
+                        android:ellipsize="end" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>

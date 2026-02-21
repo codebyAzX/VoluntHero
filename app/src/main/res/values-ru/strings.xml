@@ -18,9 +18,9 @@
 
     <string name="role_title">Ваша роль</string>
     <string name="role_volunteer">Волонтер</string>
-    <string name="role_volunteer_desc">Хочу помогать и развиваться</string>
+    <string name="role_volunteer_desc">Ищу интересные проекты и возможности</string>
     <string name="role_organizer">Организатор</string>
-    <string name="role_organizer_desc">Создаю проекты и набираю волонтеров</string>
+    <string name="role_organizer_desc">Организую мероприятия и ищу команду</string>
 
     <string name="btn_skip">Пропустить</string>
 
@@ -90,4 +90,54 @@
         <item>Дизайн</item>
     </string-array>
 
+    <string name="org_name_title">Название организации</string>
+    <string name="org_type_title">Тип организации</string>
+    <string name="org_bio_title">О вашей организации</string>
+    <string name="org_bio_hint">Расскажите кратко о вашей миссии...</string>
+
+    <string-array name="org_types_array">
+        <item>Благотворительный фонд</item>
+        <item>НКО</item>
+        <item>Гос. организация</item>
+        <item>Коммерческая корп.</item>
+        <item>Частный предприниматель</item>
+        <item>Частная инициатива</item>
+    </string-array>
+
+    <string name="org_type_error">Выберите тип или введите свой вариант</string>
+    <string name="other_org_hint">Ваш вариант (напр. ЗАО, Стартап...)</string>
+    <string name="work_email_hint">Корпоративная почта</string>
+
+
+    <string name="select_interests_warning">Выберите хотя бы один интерес!</string>
+    <string name="select_skills_warning">Укажите ваши навыки!</string>
+
+    <string name="enter_email">Введите email</string>
+    <string name="login_error">Ошибка входа</string>
+    <string name="fill_all_fields">Заполните все поля!</string>
+    <string name="verification_sent">Письмо для подтверждения отправлено!</string>
+    <string name="passwords_dont_match">Пароли не совпадают!</string>
+    <string name="error_prefix">Ошибка: </string>
+
+    <string name="email_code_hint">Код подтверждения придет на эту почту</string>
+    <string name="org_verify_title">Верификация</string>
+    <string name="org_verify_desc">Для безопасности сообщества VoluntHero, пожалуйста, укажите рабочую почту организации</string>
+
+    <string name="error_fill_name">Пожалуйста, введите название</string>
+    <string name="error_select_type">Пожалуйста, выберите тип организации</string>
+    <string name="error_fill_bio">Описание обязательно для заполнения</string>
+    <string name="error_invalid_email">Введите корректную рабочую почту</string>
+
+    <string name="welcome_msg">Добро пожаловать в VoluntHero!</string>
+
+    <string name="org_home_title">Управление</string>
+    <string name="vol_home_title">Моя активность</string>
+
+    <string name="stats_active">Активные</string>
+    <string name="stats_requests">Заявки</string>
+    <string name="stats_hours">Часы</string>
+    <string name="stats_missions">Миссии</string>
+
+    <string name="btn_create_project">+ Создать проект</string>
+    <string name="btn_find_projects">Найти миссии</string>
 </resources>

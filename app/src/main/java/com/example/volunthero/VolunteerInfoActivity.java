@@ -35,15 +35,23 @@ public class VolunteerInfoActivity extends BaseActivity {
         updateUI();
 
         btnNext.setOnClickListener(v -> {
-            if (currentStep < 4) { currentStep++; updateUI(); }
-            else { finishForm(); }
+            if (isStepValid()) { //ստուգումը ТУТ
+                if (currentStep < 4) {
+                    currentStep++;
+                    updateUI();
+                } else {
+                    finishForm();
+                }
+            }
         });
 
         btnBack.setOnClickListener(v -> {
-            if (currentStep > 1) { currentStep--; updateUI(); }
+            if (currentStep > 1) {
+                currentStep--;
+                updateUI();
+            }
         });
 
-        //выбора файл (кнопка)
         btnUpload.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("*/*");
@@ -54,13 +62,16 @@ public class VolunteerInfoActivity extends BaseActivity {
         findViewById(R.id.btnNoExperience).setOnClickListener(v -> finishForm());
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == FILE_SELECT_CODE && resultCode == RESULT_OK && data != null) {
-            int count = (data.getClipData() != null) ? data.getClipData().getItemCount() : 1;
-            tvSelectedFilesCount.setText(getString(R.string.files_selected) + ": " + count);
+    private boolean isStepValid() {
+        if (currentStep == 2 && chipGroupInterests.getCheckedChipIds().isEmpty()) {
+            Toast.makeText(this, getString(R.string.select_interests_warning), Toast.LENGTH_SHORT).show();
+            return false;
         }
+        if (currentStep == 3 && chipGroupSkills.getCheckedChipIds().isEmpty()) {
+            Toast.makeText(this, getString(R.string.select_skills_warning), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private void initViews() {
@@ -92,8 +103,6 @@ public class VolunteerInfoActivity extends BaseActivity {
         chip.setText(text);
         chip.setCheckable(true);
         chip.setTextColor(Color.WHITE);
-        chip.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#333333")));
-        chip.setChipStrokeWidth(2f);
 
         int[][] states = new int[][]{ new int[]{android.R.attr.state_checked}, new int[]{} };
         int[] colors = new int[]{ Color.parseColor("#38FFD7"), Color.parseColor("#1A1A1A") };
@@ -101,6 +110,8 @@ public class VolunteerInfoActivity extends BaseActivity {
 
         chip.setChipBackgroundColor(new ColorStateList(states, colors));
         chip.setTextColor(new ColorStateList(states, textColors));
+        chip.setChipStrokeColor(ColorStateList.valueOf(Color.parseColor("#333333")));
+        chip.setChipStrokeWidth(2f);
         return chip;
     }
 
@@ -120,10 +131,7 @@ public class VolunteerInfoActivity extends BaseActivity {
 
         btnBack.setVisibility(currentStep == 1 ? View.GONE : View.VISIBLE);
         tvStepTitle.setText(getString(R.string.step) + " " + currentStep + " " + getString(R.string.of) + " 4");
-
-        //1/4, 2/4, 3/4, 4/4
         progressBar.setProgress(currentStep);
-
         btnNext.setText(currentStep == 4 ? getString(R.string.btn_finish) : getString(R.string.btn_next));
     }
 

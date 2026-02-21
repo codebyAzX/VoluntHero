@@ -18,10 +18,9 @@
 
     <string name="role_title">Ձեր դերը</string>
     <string name="role_volunteer">Կամավոր</string>
-    <string name="role_volunteer_desc">Ցանկանում եմ օգնել և զարգանալ</string>
+    <string name="role_volunteer_desc">Փնտրում եմ հետաքրքիր նախագծեր</string>
     <string name="role_organizer">Կազմակերպիչ</string>
-    <string name="role_organizer_desc">Ստեղծում են նախագծեր և հավաքում կամավորներ</string>
-
+    <string name="role_organizer_desc">Կազմակերպում եմ միջոցառումներ</string>
     <string name="btn_skip">Բաց թողնել</string>
 
     <string name="vol_info_title">Կամավորի պրոֆիլ</string>
@@ -90,4 +89,53 @@
         <item>Կառավարում</item>
         <item>Դիզայն</item>
     </string-array>
+
+    <string name="org_name_title">Կազմակերպության անվանումը</string>
+    <string name="org_type_title">Կազմակերպության տեսակը</string>
+    <string name="org_bio_title">Ձեր կազմակերպության մասին</string>
+    <string name="org_bio_hint">Հակիրճ պատմեք ձեր առաքելության մասին...</string>
+
+    <string-array name="org_types_array">
+        <item>Բարեգործական հիմնադրամ</item>
+        <item>ՀԿ</item>
+        <item>Պետական կառույց</item>
+        <item>Կոմերցիոն կազմակերպություն</item>
+        <item>Անհատ ձեռնարկատեր</item>
+        <item>Մասնավոր նախաձեռնություն</item>
+    </string-array>
+
+    <string name="org_type_error">Ընտրեք տեսակը կամ լրացրեք ձեր տարբերակը</string>
+
+    <string name="select_interests_warning">Խնդրում ենք ընտրել առնվազն մեկ հետաքրքրություն:</string>
+    <string name="select_skills_warning">Խնդրում ենք նշել ձեր հմտությունները:</string>
+    <string name="work_email_hint">Աշխատանքային էլ. փոստ</string>
+    <string name="other_org_hint">Ձեր տարբերակը (օրինակ՝ Ստարտափ...)</string>
+
+    <string name="enter_email">Մուտքագրեք էլ. փոստը</string>
+    <string name="login_error">Մուտքի սխալ</string>
+    <string name="fill_all_fields">Խնդրում ենք լրացնել բոլոր դաշտերը</string>
+    <string name="verification_sent">Հաստատման նամակն ուղարկվել է:</string>
+    <string name="passwords_dont_match">Գաղտնաբառերը չեն համընկնում</string>
+    <string name="error_prefix">Սխալ. </string>
+
+    <string name="email_code_hint">Հաստատման կոդը կուղարկվի այս էլ. փոստին</string>
+    <string name="org_verify_title">Վերիֆիկացիա</string>
+    <string name="org_verify_desc">VoluntHero-ն անվտանգ պահելու համար խնդրում ենք տրամադրել կազմակերպության կոնտակտային էլ. փոստը</string>
+
+    <string name="error_fill_name">Խնդրում ենք մուտքագրել անվանումը</string>
+    <string name="error_select_type">Խնդրում ենք ընտրել կազմակերպության տեսակը</string>
+    <string name="error_fill_bio">Նկարագրությունը պարտադիր է</string>
+    <string name="error_invalid_email">Մուտքագրեք վավեր աշխատանքային էլ. փոստ</string>
+    <string name="welcome_msg">Բարի գալուստ VoluntHero:</string>
+
+    <string name="org_home_title">Կառավարում</string>
+    <string name="vol_home_title">Իմ ակտիվությունը</string>
+
+    <string name="stats_active">Ակտիվ</string>
+    <string name="stats_requests">Դիմումներ</string>
+    <string name="stats_hours">Ժամեր</string>
+    <string name="stats_missions">Առաքելություններ</string>
+
+    <string name="btn_create_project">+ Ստեղծել նախագիծ</string>
+    <string name="btn_find_projects">Գտնել առաքելություններ</string>
 </resources>

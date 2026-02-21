@@ -1,226 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#121212">
+    android:background="#121212"
+    android:paddingHorizontal="24dp">
 
-    <LinearLayout
-        android:id="@+id/headerArea"
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="48dp"
-        android:paddingHorizontal="24dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginTop="54dp"
+        app:indicatorColor="#7E57C2"
+        app:trackColor="#1E1E1E"
+        android:max="3"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:max="3"
-            android:progress="1"
-            android:progressTint="#38FFD7" />
-
-        <TextView
-            android:id="@+id/tvStepTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textColor="#D1C4E9"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            android:textAllCaps="true"
-            tools:text="ОРГАНИЗАЦИЯ: ШАГ 1" />
-    </LinearLayout>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mainCard"
-        android:layout_width="0dp"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="20dp"
-        app:cardBackgroundColor="#1E1E1E"
-        app:cardCornerRadius="28dp"
-        app:cardElevation="0dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="#333333"
-        app:layout_constraintBottom_toTopOf="@id/footerArea"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerArea">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="12dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/layoutButtons"
+        app:layout_constraintTop_toBottomOf="@id/progressBar">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvStepTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#7E57C2"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginBottom="16dp"/>
 
             <LinearLayout
+                android:id="@+id/stepOrgMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="24dp">
+                android:visibility="visible">
 
-                <LinearLayout
-                    android:id="@+id/stepOrgMain"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/org_name_title"
+                    android:textColor="#FFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="24dp"/>
+
+                <EditText
+                    android:id="@+id/etOrgName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="visible">
+                    android:hint="VoluntHero Team"
+                    android:textColor="#FFF"
+                    android:backgroundTint="#7E57C2"
+                    android:textColorHint="#4DFFFFFF"
+                    android:layout_marginBottom="32dp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="О вашей организации"
-                        android:textColor="#FFFFFF"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/org_type_title"
+                    android:textColor="#FFF"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="16dp"/>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:hint="Название организации"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etOrgName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#FFFFFF" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Тип организации:"
-                        android:textColor="#D1C4E9" />
-
-                    <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/chipGroupOrgType"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp">
-                        <com.google.android.material.chip.Chip
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Благотворительный фонд" />
-                        <com.google.android.material.chip.Chip
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Гос. учреждение" />
-                        <com.google.android.material.chip.Chip
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Частная компания" />
-                    </com.google.android.material.chip.ChipGroup>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/stepOrgRole"
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupOrgType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    app:singleSelection="true"
+                    app:chipSpacing="10dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ваша роль"
-                        android:textColor="#FFFFFF"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:hint="Ваша должность в организации"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etUserRole"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#FFFFFF" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/stepOrgEmail"
+                <EditText
+                    android:id="@+id/etOtherOrgType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Рабочий Email"
-                        android:textColor="#FFFFFF"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="Для подтверждения статуса организации нам нужен официальный адрес."
-                        android:textColor="#D1C4E9"
-                        android:textSize="14sp" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:hint="Email для связи"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etWorkEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#FFFFFF"
-                            android:inputType="textEmailAddress" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
-
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/other_org_hint"
+                    android:textColor="#FFF"
+                    android:backgroundTint="#7E57C2"
+                    android:textSize="15sp"
+                    android:textColorHint="#4DFFFFFF"/>
             </LinearLayout>
-        </ScrollView>
-    </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:id="@+id/stepOrgBio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/org_bio_title"
+                    android:textColor="#FFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="24dp"/>
+
+                <EditText
+                    android:id="@+id/etOrgBio"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:hint="@string/org_bio_hint"
+                    android:textColor="#FFF"
+                    android:gravity="top"
+                    android:background="@drawable/secondary_button_background"
+                    android:padding="20dp"
+                    android:textColorHint="#4DFFFFFF"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stepOrgVerify"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_email"
+                    app:tint="#38FFD7" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/org_verify_title"
+                    android:textColor="#FFF"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/org_verify_desc"
+                    android:textColor="#9E9E9E"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:paddingHorizontal="24dp" />
+
+                <EditText
+                    android:id="@+id/etOrgWorkEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:hint="@string/work_email_hint"
+                    android:textColor="#FFF"
+                    android:inputType="textEmailAddress"
+                    android:backgroundTint="#7E57C2"
+                    android:textColorHint="#4DFFFFFF" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/email_code_hint"
+                    android:textColor="#9E9E9E"
+                    android:textSize="13sp"
+                    android:gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
-        android:id="@+id/footerArea"
+        android:id="@+id/layoutButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="40dp"
-        android:paddingHorizontal="24dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnBack"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginEnd="12dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"
+            android:text="@string/btn_back"
+            android:textAllCaps="false"
             android:background="@drawable/secondary_button_background"
-            android:text="←"
-            android:textColor="#FFFFFF"
-            android:textSize="22sp"
+            android:textColor="#FFF"
             android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNext"
             android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_weight="1"
+            android:layout_height="60dp"
+            android:layout_weight="2"
+            android:text="@string/btn_next"
+            android:textAllCaps="false"
             android:background="@drawable/gradient_button_background"
-            android:text="ДАЛЕЕ"
-            android:textColor="#FFFFFF"
+            android:textColor="#FFF"
             android:textStyle="bold" />
     </LinearLayout>
 

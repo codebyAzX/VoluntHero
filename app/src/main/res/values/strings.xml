@@ -18,9 +18,9 @@
 
     <string name="role_title">Your role</string>
     <string name="role_volunteer">Volunteer</string>
-    <string name="role_volunteer_desc">I want to help and grow</string>
+    <string name="role_volunteer_desc">I am looking for interesting projects to join</string>
     <string name="role_organizer">Organizer</string>
-    <string name="role_organizer_desc">I create projects and look for volunteers</string>
+    <string name="role_organizer_desc">I organize events and manage projects</string>
 
     <string name="btn_skip">Skip</string>
 
@@ -88,4 +88,50 @@
         <item>Management</item>
         <item>Design</item>
     </string-array>
+
+    <string name="org_name_title">Organization Name</string>
+    <string name="org_type_title">Organization Type</string>
+    <string name="org_bio_title">About Your Organization</string>
+    <string name="org_bio_hint">Briefly tell us about your mission...</string>
+    <string name="org_type_error">Select a type or enter your own option</string>
+
+    <string-array name="org_types_array">
+        <item>Charity Foundation</item>
+        <item>NGO</item>
+        <item>Government Agency</item>
+        <item>Commercial Corp.</item>
+        <item>Private Entrepreneur</item>
+        <item>Private Initiative</item>
+    </string-array>
+
+    <string name="select_interests_warning">Please select at least one interest!</string>
+    <string name="select_skills_warning">Please specify your skills!</string>
+    <string name="work_email_hint">Work email</string>
+    <string name="other_org_hint">Your variant (e.g. Startup, Union...)</string>
+
+    <string name="enter_email">Please enter email</string>
+    <string name="login_error">Login error</string>
+    <string name="fill_all_fields">Please fill in all fields</string>
+    <string name="verification_sent">Verification sent!</string>
+    <string name="passwords_dont_match">Passwords do not match!</string>
+    <string name="error_prefix">Error: </string>
+
+    <string name="email_code_hint">Verification code will be sent to this email</string>
+    <string name="org_verify_title">Verification</string>
+    <string name="org_verify_desc">To keep VoluntHero safe, please provide your organization\'s contact email</string>
+
+    <string name="error_fill_name">Please fill in the name</string>
+    <string name="error_select_type">Please select an organization type</string>
+    <string name="error_fill_bio">Description is required</string>
+    <string name="error_invalid_email">Enter a valid work email</string>
+
+    <string name="welcome_msg">Welcome to VoluntHero!</string>
+    <string name="org_home_title">Management</string>
+    <string name="vol_home_title">My Activity</string>
+    <string name="stats_active">Active</string>
+    <string name="stats_requests">Requests</string>
+    <string name="stats_hours">Hours</string>
+    <string name="stats_missions">Missions</string>
+    <string name="btn_create_project">+ Create project</string>
+    <string name="btn_find_projects">Find missions</string>
 </resources>

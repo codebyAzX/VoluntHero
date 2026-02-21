@@ -17,7 +17,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends BaseActivity { //BASE
+public class LoginActivity extends BaseActivity {
 
     private TextView tvLogo, tvGoToRegister, tvForgotPassword, tvLangSwitch;
     private ImageView ivFlag;
@@ -31,10 +31,8 @@ public class LoginActivity extends BaseActivity { //BASE
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //Firebase
         mAuth = FirebaseAuth.getInstance();
 
-        //View
         tvLogo = findViewById(R.id.tvLogo);
         tvGoToRegister = findViewById(R.id.tvGoToRegister);
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
@@ -45,96 +43,65 @@ public class LoginActivity extends BaseActivity { //BASE
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
 
-        //градиент
-        if (tvLogo != null) {
-            applyGradientToLogo();
-        }
-
+        applyGradientToLogo();
         updateLanguageUI();
 
-        //язык
-        if (llLangSwitch != null) {
-            llLangSwitch.setOnClickListener(v -> showLanguageMenu());
-        }
+        llLangSwitch.setOnClickListener(v -> showLanguageMenu());
 
-        //рег
-        if (tvGoToRegister != null) {
-            tvGoToRegister.setOnClickListener(v -> {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            });
-        }
+        tvGoToRegister.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+        });
 
-        //парол
-        if (tvForgotPassword != null) {
-            tvForgotPassword.setOnClickListener(v -> {
-                if (etEmail != null) {
-                    String email = etEmail.getText().toString().trim();
-                    if (email.isEmpty()) {
-                        etEmail.setError("Введите email");
-                        return;
-                    }
-                    mAuth.sendPasswordResetEmail(email)
-                            .addOnCompleteListener(task -> {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(this, "Письмо отправлено!", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
-            });
-        }
+        tvForgotPassword.setOnClickListener(v -> {
+            String email = etEmail.getText().toString().trim();
+            if (email.isEmpty()) {
+                etEmail.setError(getString(R.string.enter_email));
+                return;
+            }
+            mAuth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(this, getString(R.string.verification_sent), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        });
 
-        //ЛОГИКА ВХОДА
-        if (btnContinue != null) {
-            btnContinue.setOnClickListener(v -> {
-                String email = etEmail.getText().toString().trim();
-                String password = etPassword.getText().toString().trim();
+        btnContinue.setOnClickListener(v -> {
+            String email = etEmail.getText().toString().trim();
+            String password = etPassword.getText().toString().trim();
 
-                if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(this, task -> {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                if (user != null) {
-                                    try {
-                                        Intent intent = new Intent(LoginActivity.this, RoleSelectionActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } catch (Exception e) {
-                                        Toast.makeText(this, "Ошибка перехода: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            } else {
-                                Toast.makeText(this, "Ошибка входа: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        });
-            });
-        }
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            startActivity(new Intent(this, RoleSelectionActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(this, getString(R.string.login_error) + ": " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+        });
     }
 
     private void applyGradientToLogo() {
         tvLogo.post(() -> {
-            try {
-                TextPaint paint = tvLogo.getPaint();
-                float width = paint.measureText(tvLogo.getText().toString());
-                if (width > 0) {
-                    Shader textShader = new LinearGradient(0, 0, width, 0,
-                            new int[]{Color.parseColor("#7E57C2"), Color.parseColor("#38FFD7")},
-                            null, Shader.TileMode.CLAMP);
-                    paint.setShader(textShader);
-                    tvLogo.invalidate();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            TextPaint paint = tvLogo.getPaint();
+            float width = paint.measureText(tvLogo.getText().toString());
+            if (width > 0) {
+                Shader textShader = new LinearGradient(0, 0, width, 0,
+                        new int[]{Color.parseColor("#7E57C2"), Color.parseColor("#38FFD7")},
+                        null, Shader.TileMode.CLAMP);
+                paint.setShader(textShader);
+                tvLogo.invalidate();
             }
         });
     }
 
     private void updateLanguageUI() {
-        if (tvLangSwitch == null || ivFlag == null) return;
         String lang = LocaleHelper.getLanguage(this);
         if (lang.equals("hy")) {
             tvLangSwitch.setText("AM");
@@ -166,11 +133,11 @@ public class LoginActivity extends BaseActivity { //BASE
     }
 
     private void setLocale(String lang) {
-        //сохраняем выбор в настройки
         LocaleHelper.setLocale(this, lang);
-
-        Intent refresh = new Intent(this, LoginActivity.class);
-        startActivity(refresh);
+        //полная перезагрузка для применения языка
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         finish();
     }
 }
