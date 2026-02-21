@@ -24,10 +24,16 @@ public class OrganizerInfoActivity extends BaseActivity {
     private ChipGroup chipGroupOrgType;
     private int currentStep = 1;
 
+    // 1. Добавляем переменную для роли
+    private String userRole;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organizer_info);
+
+        // 2. Получаем роль из интента сразу
+        userRole = getIntent().getStringExtra("USER_ROLE");
 
         initViews();
         populateOrgTypes();
@@ -113,7 +119,6 @@ public class OrganizerInfoActivity extends BaseActivity {
         return true;
     }
 
-    //էջերի համարնեը
     private void updateUI()  {
         stepOrgMain.setVisibility(currentStep == 1 ? View.VISIBLE : View.GONE);
         stepOrgBio.setVisibility(currentStep == 2 ? View.VISIBLE : View.GONE);
@@ -131,6 +136,10 @@ public class OrganizerInfoActivity extends BaseActivity {
     private void finishForm() {
         Toast.makeText(this, "Welcome to VoluntHero!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);
+
+        // 3. ПЕРЕДАЕМ РОЛЬ В MAIN
+        intent.putExtra("USER_ROLE", userRole);
+
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

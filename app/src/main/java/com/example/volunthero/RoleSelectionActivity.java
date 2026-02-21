@@ -11,15 +11,13 @@ import com.google.android.material.card.MaterialCardView;
 public class RoleSelectionActivity extends BaseActivity {
 
     private MaterialCardView cardVolunteer, cardOrganizer;
-    private TextView tvRoleTitle;
-    private TextView tvVolTitle, tvVolDesc, tvOrgTitle, tvOrgDesc;
+    private TextView tvRoleTitle, tvVolTitle, tvVolDesc, tvOrgTitle, tvOrgDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_role_selection);
 
-        //инициализация
         tvRoleTitle = findViewById(R.id.tvRoleTitle);
         cardVolunteer = findViewById(R.id.cardVolunteer);
         cardOrganizer = findViewById(R.id.cardOrganizer);
@@ -29,23 +27,25 @@ public class RoleSelectionActivity extends BaseActivity {
         tvOrgDesc = findViewById(R.id.tvOrganizerDesc);
 
         setupLocalizedTexts();
+        if (tvRoleTitle != null) applyGradientToTitle();
 
-        //градиент
-        if (tvRoleTitle != null) {
-            applyGradientToTitle();
-        }
-
-        //клик-вол
+        // Клик по волонтеру -> ведем на инфо-экран волонтера
         if (cardVolunteer != null) {
             cardVolunteer.setOnClickListener(v -> {
-                startActivity(new Intent(this, VolunteerInfoActivity.class));
+                Intent intent = new Intent(this, VolunteerInfoActivity.class);
+                intent.putExtra("USER_ROLE", "volunteer");
+                startActivity(intent);
+                finish();
             });
         }
 
-        //клик-орг
+        // Клик по организатору -> ведем на инфо-экран организатора
         if (cardOrganizer != null) {
             cardOrganizer.setOnClickListener(v -> {
-                startActivity(new Intent(this, OrganizerInfoActivity.class));
+                Intent intent = new Intent(this, OrganizerInfoActivity.class);
+                intent.putExtra("USER_ROLE", "organizer");
+                startActivity(intent);
+                finish();
             });
         }
     }

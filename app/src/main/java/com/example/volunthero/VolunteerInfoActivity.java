@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,10 +25,16 @@ public class VolunteerInfoActivity extends BaseActivity {
     private ChipGroup chipGroupInterests, chipGroupSkills;
     private int currentStep = 1;
 
+    // Переменная для хранения роли на уровне класса
+    private String userRole;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer_info);
+
+        // Получаем роль сразу при создании экрана
+        userRole = getIntent().getStringExtra("USER_ROLE");
 
         initViews();
         setupDatePicker();
@@ -35,12 +42,12 @@ public class VolunteerInfoActivity extends BaseActivity {
         updateUI();
 
         btnNext.setOnClickListener(v -> {
-            if (isStepValid()) { //ստուգումը ТУТ
+            if (isStepValid()) {
                 if (currentStep < 4) {
                     currentStep++;
                     updateUI();
                 } else {
-                    finishForm();
+                    finishForm(); // Переход в Main происходит тут
                 }
             }
         });
@@ -92,17 +99,20 @@ public class VolunteerInfoActivity extends BaseActivity {
 
     private void populateChips() {
         String[] interests = getResources().getStringArray(R.array.interests_array);
-        for (String i : interests) chipGroupInterests.addView(createChip(i));
+        if (interests != null) {
+            for (String i : interests) chipGroupInterests.addView(createChip(i));
+        }
 
         String[] skills = getResources().getStringArray(R.array.skills_array);
-        for (String s : skills) chipGroupSkills.addView(createChip(s));
+        if (skills != null) {
+            for (String s : skills) chipGroupSkills.addView(createChip(s));
+        }
     }
 
     private Chip createChip(String text) {
         Chip chip = new Chip(this);
         chip.setText(text);
         chip.setCheckable(true);
-        chip.setTextColor(Color.WHITE);
 
         int[][] states = new int[][]{ new int[]{android.R.attr.state_checked}, new int[]{} };
         int[] colors = new int[]{ Color.parseColor("#38FFD7"), Color.parseColor("#1A1A1A") };
@@ -117,10 +127,12 @@ public class VolunteerInfoActivity extends BaseActivity {
 
     private void setupDatePicker() {
         DatePicker dp = findViewById(R.id.datePicker);
-        dp.init(2005, 0, 1, (view, y, m, d) -> {
-            int age = 2026 - y;
-            tvCalculatedAge.setText(age + " " + getString(R.string.years_unit));
-        });
+        if (dp != null) {
+            dp.init(2005, 0, 1, (view, y, m, d) -> {
+                int age = 2026 - y;
+                tvCalculatedAge.setText(age + " " + getString(R.string.years_unit));
+            });
+        }
     }
 
     private void updateUI() {
@@ -137,7 +149,11 @@ public class VolunteerInfoActivity extends BaseActivity {
 
     private void finishForm() {
         Toast.makeText(this, getString(R.string.welcome_hero), Toast.LENGTH_SHORT).show();
+
+        // ВОТ ТУТ ГЛАВНОЕ: Передаем роль в MainActivity
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("USER_ROLE", userRole);
+
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
