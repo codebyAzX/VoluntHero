@@ -25,7 +25,7 @@ public class VolunteerInfoActivity extends BaseActivity {
     private ChipGroup chipGroupInterests, chipGroupSkills;
     private int currentStep = 1;
 
-    // Переменная для хранения роли на уровне класса
+    //էլի դերի փոփոպական
     private String userRole;
 
     @Override
@@ -33,7 +33,7 @@ public class VolunteerInfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer_info);
 
-        // Получаем роль сразу при создании экрана
+        //ստանում ենք դերը
         userRole = getIntent().getStringExtra("USER_ROLE");
 
         initViews();
@@ -47,7 +47,7 @@ public class VolunteerInfoActivity extends BaseActivity {
                     currentStep++;
                     updateUI();
                 } else {
-                    finishForm(); // Переход в Main происходит тут
+                    finishForm(); //=> Main
                 }
             }
         });
@@ -150,7 +150,7 @@ public class VolunteerInfoActivity extends BaseActivity {
     private void finishForm() {
         Toast.makeText(this, getString(R.string.welcome_hero), Toast.LENGTH_SHORT).show();
 
-        // ВОТ ТУТ ГЛАВНОЕ: Передаем роль в MainActivity
+        //դերը => MainActivity
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("USER_ROLE", userRole);
 

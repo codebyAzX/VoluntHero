@@ -24,7 +24,7 @@ public class OrganizerInfoActivity extends BaseActivity {
     private ChipGroup chipGroupOrgType;
     private int currentStep = 1;
 
-    // 1. Добавляем переменную для роли
+    //դերի փոփոխական
     private String userRole;
 
     @Override
@@ -32,7 +32,7 @@ public class OrganizerInfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organizer_info);
 
-        // 2. Получаем роль из интента сразу
+        //ստանում ենք դեռր
         userRole = getIntent().getStringExtra("USER_ROLE");
 
         initViews();
@@ -119,6 +119,8 @@ public class OrganizerInfoActivity extends BaseActivity {
         return true;
     }
 
+
+    //էջեռի լոգիկան
     private void updateUI()  {
         stepOrgMain.setVisibility(currentStep == 1 ? View.VISIBLE : View.GONE);
         stepOrgBio.setVisibility(currentStep == 2 ? View.VISIBLE : View.GONE);
@@ -137,7 +139,7 @@ public class OrganizerInfoActivity extends BaseActivity {
         Toast.makeText(this, "Welcome to VoluntHero!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);
 
-        // 3. ПЕРЕДАЕМ РОЛЬ В MAIN
+        //դերը քցում ենք main
         intent.putExtra("USER_ROLE", userRole);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

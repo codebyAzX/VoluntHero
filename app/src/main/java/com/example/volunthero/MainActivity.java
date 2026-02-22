@@ -11,16 +11,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 1. Пытаемся получить роль из Intent (если пришли из RoleSelection или InfoActivity)
+        //роль из Intent(RoleSelection/InfoActivity)
         String userRole = getIntent().getStringExtra("USER_ROLE");
 
-        // 2. Если роль не передана (например, запустили приложение напрямую)
+        //եթե հանկարծ դերը չի փոխանցվել
         if (userRole == null) {
-            // Можешь временно поменять на "organizer", чтобы потестить другой экран
+            //ժամանակավոռ
             userRole = "volunteer";
         }
 
-        // 3. Загружаем нужный фрагмент только при первом создании Activity
         if (savedInstanceState == null) {
             if (userRole.equals("volunteer")) {
                 loadFragment(new VolunteerHomeFragment());
@@ -30,9 +29,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Метод для замены фрагмента в контейнере
-     */
+    //метод для замены фрагмента в контейнере!
     private void loadFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()

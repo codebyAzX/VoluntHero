@@ -29,7 +29,7 @@ public class RoleSelectionActivity extends BaseActivity {
         setupLocalizedTexts();
         if (tvRoleTitle != null) applyGradientToTitle();
 
-        // Клик по волонтеру -> ведем на инфо-экран волонтера
+        //քլիք go to կամավոր
         if (cardVolunteer != null) {
             cardVolunteer.setOnClickListener(v -> {
                 Intent intent = new Intent(this, VolunteerInfoActivity.class);
@@ -39,7 +39,7 @@ public class RoleSelectionActivity extends BaseActivity {
             });
         }
 
-        // Клик по организатору -> ведем на инфо-экран организатора
+        //վերևին, բայց to կազմակերպ․
         if (cardOrganizer != null) {
             cardOrganizer.setOnClickListener(v -> {
                 Intent intent = new Intent(this, OrganizerInfoActivity.class);

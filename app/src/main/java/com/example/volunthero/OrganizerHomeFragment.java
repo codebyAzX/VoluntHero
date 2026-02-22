@@ -17,7 +17,7 @@ public class OrganizerHomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // ДОЛЖЕН БЫТЬ МАКЕТ ОРГАНИЗАТОРА
+        //МАКЕТ ОРГАНИЗАТОРА
         return inflater.inflate(R.layout.fragment_organizer_home, container, false);
     }
 
@@ -25,7 +25,7 @@ public class OrganizerHomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // ID ДОЛЖЕН БЫТЬ tvLogoOrg
+        //ID
         final TextView textLogo = view.findViewById(R.id.tvLogoOrg);
         if (textLogo != null) {
             applyGradient(textLogo);

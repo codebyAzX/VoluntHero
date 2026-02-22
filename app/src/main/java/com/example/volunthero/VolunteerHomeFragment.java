@@ -12,13 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-// ИМЯ КЛАССА ДОЛЖНО БЫТЬ VolunteerHomeFragment
 public class VolunteerHomeFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // ДОЛЖЕН БЫТЬ МАКЕТ ВОЛОНТЕРА
+        //МАКЕТ ВОЛОНТЕРА
         return inflater.inflate(R.layout.fragment_volunteer_home, container, false);
     }
 
@@ -26,7 +25,7 @@ public class VolunteerHomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // ID ДОЛЖЕН БЫТЬ tvLogoVol
+        //ID
         final TextView textLogo = view.findViewById(R.id.tvLogoVol);
         if (textLogo != null) {
             applyGradient(textLogo);
