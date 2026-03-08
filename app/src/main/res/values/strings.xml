@@ -134,4 +134,9 @@
     <string name="stats_missions">Missions</string>
     <string name="btn_create_project">+ Create project</string>
     <string name="btn_find_projects">Find missions</string>
+
+    <string name="feedback_title">Feedback</string>
+    <string name="nav_chat">Messages</string>
+    <string name="profile_title">Profile</string>
+    <string name="logout">Logout</string>
 </resources>

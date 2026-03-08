@@ -138,4 +138,9 @@
 
     <string name="btn_create_project">+ Ստեղծել նախագիծ</string>
     <string name="btn_find_projects">Գտնել առաքելություններ</string>
+
+    <string name="feedback_title">Հետադարձ կապ</string>
+    <string name="nav_chat">Հաղորդագրություններ</string>
+    <string name="profile_title">Պրոֆիլ</string>
+    <string name="logout">Դուրս գալ</string>
 </resources>

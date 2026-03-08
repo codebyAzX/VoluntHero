@@ -14,11 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <View
+        <ImageView
             android:id="@+id/eventImage"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="#2A2A2A"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView

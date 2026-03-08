@@ -140,4 +140,9 @@
 
     <string name="btn_create_project">+ Создать проект</string>
     <string name="btn_find_projects">Найти миссии</string>
+
+    <string name="feedback_title">Обратная связь</string>
+    <string name="nav_chat">Сообщения</string>
+    <string name="profile_title">Профиль</string>
+    <string name="logout">Выйти</string>
 </resources>

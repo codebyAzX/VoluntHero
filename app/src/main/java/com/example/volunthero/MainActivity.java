@@ -6,30 +6,48 @@ import androidx.fragment.app.Fragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String userRole;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //роль из Intent(RoleSelection/InfoActivity)
-        String userRole = getIntent().getStringExtra("USER_ROLE");
-
-        //եթե հանկարծ դերը չի փոխանցվել
-        if (userRole == null) {
-            //ժամանակավոռ
-            userRole = "volunteer";
-        }
+        userRole = getIntent().getStringExtra("USER_ROLE");
+        if (userRole == null) userRole = "volunteer";
 
         if (savedInstanceState == null) {
-            if (userRole.equals("volunteer")) {
-                loadFragment(new VolunteerHomeFragment());
-            } else if (userRole.equals("organizer")) {
-                loadFragment(new OrganizerHomeFragment());
-            }
+            loadHomeFragment();
         }
+
+        setupNavigation();
     }
 
-    //метод для замены фрагмента в контейнере!
+    private void setupNavigation() {
+        //домой
+        findViewById(R.id.nav_home).setOnClickListener(v -> loadHomeFragment());
+
+        //фидбек
+        findViewById(R.id.nav_feedback).setOnClickListener(v -> loadFragment(new FeedbackFragment()));
+
+        //чат
+        findViewById(R.id.nav_chat).setOnClickListener(v -> {
+            if ("organizer".equals(userRole)) loadFragment(new OrganizerChatsFragment());
+            else loadFragment(new ChatFragment());
+        });
+
+        //профиль
+        findViewById(R.id.nav_profile).setOnClickListener(v -> {
+            if ("organizer".equals(userRole)) loadFragment(new OrganizerProfileFragment());
+            else loadFragment(new ProfileFragment());
+        });
+    }
+
+    private void loadHomeFragment() {
+        if ("volunteer".equals(userRole)) loadFragment(new VolunteerHomeFragment());
+        else loadFragment(new OrganizerHomeFragment());
+    }
+
     private void loadFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
