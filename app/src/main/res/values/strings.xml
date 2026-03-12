@@ -2,6 +2,10 @@
 <resources>
 
     <string name="app_name">VoluntHero</string>
+    <string name="welcome_title">VoluntHero</string>
+
+    <string name="btn_get_started">Get Started</string>
+    <string name="already_have_account">I already have an account</string>
 
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
@@ -14,7 +18,6 @@
     <string name="confirm_password_hint">Confirm password</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="btn_register">Register</string>
-    <string name="already_have_account">Already have an account? Log in</string>
 
     <string name="role_title">Your role</string>
     <string name="role_volunteer">Volunteer</string>

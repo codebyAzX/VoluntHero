@@ -2,7 +2,10 @@
 <resources>
 
     <string name="app_name">VoluntHero</string>
+    <string name="welcome_title">VoluntHero</string>
 
+    <string name="btn_get_started">Սկսել</string>
+    <string name="already_have_account">Արդեն ունեմ հաշիվ</string>
     <string name="username_hint">Մուտքանուն</string>
     <string name="password_hint">Գաղտնաբառ</string>
     <string name="btn_continue">Շարունակել</string>
@@ -14,7 +17,6 @@
     <string name="confirm_password_hint">Կրկնել գաղտնաբառը</string>
     <string name="forgot_password">Մոռացե՞լ եք գաղտնաբառը</string>
     <string name="btn_register">Գրանցվել</string>
-    <string name="already_have_account">Արդեն ունե՞ք հաշիվ։ Մուտք գործել</string>
 
     <string name="role_title">Ձեր դերը</string>
     <string name="role_volunteer">Կամավոր</string>
