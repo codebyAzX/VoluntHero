@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">VoluntHero</string>
-    <string name="welcome_title">VoluntHero</string>
+    <string name="hello_msg">Բարև!</string>
 
     <string name="btn_get_started">Սկսել</string>
     <string name="already_have_account">Արդեն ունեմ հաշիվ</string>
@@ -10,6 +10,13 @@
     <string name="password_hint">Գաղտնաբառ</string>
     <string name="btn_continue">Շարունակել</string>
     <string name="go_to_reg">Չունե՞ք հաշիվ։ Գրանցվել</string>
+
+    <string name="terms_conditions">Համաձայն եմ պայմաններին և դրույթներին</string>
+    <string name="btn_signup">Գրանցվել</string>
+    <string name="welcome_title">Բարի գալուստ!</string>
+    <string name="btn_login">Մուտք գործել</string>
+    <string name="or_connect_with">Կամ միանալ</string>
+    <string name="no_account_signup">Հաշիվ չունե՞ք։ Գրանցվել</string>
 
     <string name="reg_title">Ստեղծել հաշիվ</string>
     <string name="nickname_hint">Մականուն</string>

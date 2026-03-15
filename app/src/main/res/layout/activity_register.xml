@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/welcome_gradient">
+    android:background="@drawable/welcome_gradient02">
 
     <ImageView
         android:id="@+id/ivLogo"
@@ -37,8 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="24dp"
-                android:text="hello!"
-                android:textColor="#a86bff"
+                android:text="@string/hello_msg"
+                android:textColor="#9F9F9F"
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
@@ -47,8 +47,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:textColorHint="#9F9F9F"
-                app:boxStrokeColor="#9F9F9F"
                 app:startIconTint="#9F9F9F"
+                app:boxStrokeColor="@color/text_input_stroke_color"
+                app:hintTextColor="#9F9F9F"
                 app:boxCornerRadiusBottomEnd="30dp"
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
@@ -58,7 +59,7 @@
                     android:id="@+id/etUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Username" />
+                    android:hint="@string/nickname_hint" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,8 +69,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:textColorHint="#9F9F9F"
-                app:boxStrokeColor="#9F9F9F"
                 app:startIconTint="#9F9F9F"
+                app:boxStrokeColor="@color/text_input_stroke_color"
+                app:hintTextColor="#9F9F9F"
                 app:boxCornerRadiusBottomEnd="30dp"
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
@@ -79,7 +81,7 @@
                     android:id="@+id/etRegEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="@string/email_hint"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,8 +91,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:textColorHint="#9F9F9F"
-                app:boxStrokeColor="#9F9F9F"
                 app:startIconTint="#9F9F9F"
+                app:boxStrokeColor="@color/text_input_stroke_color"
+                app:hintTextColor="#9F9F9F"
                 app:boxCornerRadiusBottomEnd="30dp"
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
@@ -101,7 +104,7 @@
                     android:id="@+id/etRegPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="@string/password_hint"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,8 +114,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:textColorHint="#9F9F9F"
-                app:boxStrokeColor="#9F9F9F"
                 app:startIconTint="#9F9F9F"
+                app:boxStrokeColor="@color/text_input_stroke_color"
+                app:hintTextColor="#9F9F9F"
                 app:boxCornerRadiusBottomEnd="30dp"
                 app:boxCornerRadiusBottomStart="30dp"
                 app:boxCornerRadiusTopEnd="30dp"
@@ -123,7 +127,7 @@
                     android:id="@+id/etConfirmPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Confirm Password"
+                    android:hint="@string/confirm_password_hint"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -133,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#9F9F9F"
                 android:textSize="12sp"
-                android:text="I agree to the terms and conditions" />
+                android:text="@string/terms_conditions" />
 
             <Button
                 android:id="@+id/btnRegister"
@@ -141,8 +145,8 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
                 android:textColor="#FFFFFF"
-                android:backgroundTint="#77fceb"
-                android:text="Sign Up"
+                android:backgroundTint="#a168f2"
+                android:text="@string/btn_signup"
                 app:cornerRadius="30dp"
                 android:textStyle="bold"/>
 
@@ -155,7 +159,7 @@
                 android:layout_marginTop="16dp"
                 android:padding="8dp"
                 android:textColor="#9F9F9F"
-                android:text="Already have an account? Log In" />
+                android:text="@string/already_have_account" />
 
         </LinearLayout>
     </ScrollView>

@@ -4,27 +4,37 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextPaint;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupMenu;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends BaseActivity {
 
-    private TextView tvLogo, tvGoToRegister, tvForgotPassword, tvLangSwitch;
-    private ImageView ivFlag;
-    private LinearLayout llLangSwitch;
-    private Button btnContinue;
-    private TextInputEditText etEmail, etPassword;
+    private TextView tvGoToRegister, tvForgotPassword;
+    private Button btnLogin;
+    private TextInputEditText etLoginEmail, etLoginPassword;
+    private ImageButton btnGoogle, btnFacebook, btnLinkedIn;
     private FirebaseAuth mAuth;
+    private TextView tvWelcomeTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,45 +43,45 @@ public class LoginActivity extends BaseActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        tvLogo = findViewById(R.id.tvLogo);
+        etLoginEmail = findViewById(R.id.etLoginEmail);
+        etLoginPassword = findViewById(R.id.etLoginPassword);
+        btnLogin = findViewById(R.id.btnLogin);
         tvGoToRegister = findViewById(R.id.tvGoToRegister);
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
-        btnContinue = findViewById(R.id.btnContinue);
-        tvLangSwitch = findViewById(R.id.tvLangSwitch);
-        ivFlag = findViewById(R.id.ivFlag);
-        llLangSwitch = findViewById(R.id.llLangSwitch);
-        etEmail = findViewById(R.id.etEmail);
-        etPassword = findViewById(R.id.etPassword);
+        btnGoogle = findViewById(R.id.btnGoogle);
+        btnFacebook = findViewById(R.id.btnFacebook);
+        btnLinkedIn = findViewById(R.id.btnLinkedIn);
 
-        applyGradientToLogo();
-        updateLanguageUI();
+        tvWelcomeTitle = findViewById(R.id.tvLoginTitle);
+        String titleText = getString(R.string.welcome_title);
+        setupGradientTitle(tvWelcomeTitle, titleText);
 
-        llLangSwitch.setOnClickListener(v -> showLanguageMenu());
 
-        tvGoToRegister.setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-        });
 
+        //сброс пароля
         tvForgotPassword.setOnClickListener(v -> {
-            String email = etEmail.getText().toString().trim();
+            String email = etLoginEmail.getText().toString().trim();
             if (email.isEmpty()) {
-                etEmail.setError(getString(R.string.enter_email));
-                return;
+                etLoginEmail.setError("Enter your email first");
+            } else {
+                mAuth.sendPasswordResetEmail(email)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(this, "Reset link sent to your email", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
-            mAuth.sendPasswordResetEmail(email)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(this, getString(R.string.verification_sent), Toast.LENGTH_SHORT).show();
-                        }
-                    });
         });
 
-        btnContinue.setOnClickListener(v -> {
-            String email = etEmail.getText().toString().trim();
-            String password = etPassword.getText().toString().trim();
+        //логика входа
+        btnLogin.setOnClickListener(v -> {
+            String email = etLoginEmail.getText().toString().trim();
+            String password = etLoginPassword.getText().toString().trim();
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -81,63 +91,80 @@ public class LoginActivity extends BaseActivity {
                             startActivity(new Intent(this, RoleSelectionActivity.class));
                             finish();
                         } else {
-                            Toast.makeText(this, getString(R.string.login_error) + ": " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
         });
+
+        //Google Sign-In Client
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id)) // ID из google-services.json
+                .requestEmail()
+                .build();
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        btnGoogle.setOnClickListener(v -> {
+            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+            startActivityForResult(signInIntent, 101); // 101 - код запроса
+        });
+
+
+        btnFacebook.setOnClickListener(v -> Toast.makeText(this, "Facebook Login coming soon", Toast.LENGTH_SHORT).show());
+        btnLinkedIn.setOnClickListener(v -> Toast.makeText(this, "LinkedIn Login coming soon", Toast.LENGTH_SHORT).show());
     }
 
-    private void applyGradientToLogo() {
-        tvLogo.post(() -> {
-            TextPaint paint = tvLogo.getPaint();
-            float width = paint.measureText(tvLogo.getText().toString());
-            if (width > 0) {
-                Shader textShader = new LinearGradient(0, 0, width, 0,
-                        new int[]{Color.parseColor("#7E57C2"), Color.parseColor("#38FFD7")},
-                        null, Shader.TileMode.CLAMP);
-                paint.setShader(textShader);
-                tvLogo.invalidate();
-            }
+    private void setupGradientTitle(TextView textView, String text) {
+        SpannableString spannable = new SpannableString(text);
+
+        int index = text.indexOf("!");
+        if (index != -1) {
+            spannable.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.ITALIC),
+                    index, index + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannable.setSpan(new ForegroundColorSpan(Color.parseColor("#38FFD7")),
+                    index, index + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        textView.setText(spannable);
+
+        //градиент
+        textView.post(() -> {
+            TextPaint paint = textView.getPaint();
+            float width = paint.measureText(textView.getText().toString());
+
+            Shader textShader = new LinearGradient(0, 0, width, 0,
+                    new int[]{Color.parseColor("#a86bff"), Color.parseColor("#38FFD7")},
+                    null, Shader.TileMode.CLAMP);
+
+            paint.setShader(textShader);
+            textView.invalidate();
         });
     }
 
-    private void updateLanguageUI() {
-        String lang = LocaleHelper.getLanguage(this);
-        if (lang.equals("hy")) {
-            tvLangSwitch.setText("AM");
-            ivFlag.setImageResource(R.drawable.flag_armenia);
-        } else if (lang.equals("ru")) {
-            tvLangSwitch.setText("RU");
-            ivFlag.setImageResource(R.drawable.flag_russia);
-        } else {
-            tvLangSwitch.setText("EN");
-            ivFlag.setImageResource(R.drawable.flag_usa);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 101) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account.getIdToken());
+            } catch (ApiException e) {
+                Toast.makeText(this, "Google sign-in failed", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
-    private void showLanguageMenu() {
-        PopupMenu popupMenu = new PopupMenu(this, llLangSwitch);
-        popupMenu.getMenu().add(0, 1, 0, "Հայերեն (AM)");
-        popupMenu.getMenu().add(0, 2, 1, "Русский (RU)");
-        popupMenu.getMenu().add(0, 3, 2, "English (EN)");
-
-        popupMenu.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                case 1: setLocale("hy"); break;
-                case 2: setLocale("ru"); break;
-                case 3: setLocale("en"); break;
-            }
-            return true;
-        });
-        popupMenu.show();
-    }
-
-    private void setLocale(String lang) {
-        LocaleHelper.setLocale(this, lang);
-        //полная перезагрузка для применения языка
-        Intent intent = new Intent(this, LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
+    private void firebaseAuthWithGoogle(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        startActivity(new Intent(this, RoleSelectionActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(this, "Auth Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

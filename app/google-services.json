@@ -12,7 +12,12 @@
           "package_name": "com.example.volunthero"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "37364066772-n5rou3tqfrpsg67scq5s9s5l3hqo06pr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDeAZWO2rHNLWE6sDxoaTaJysNbiZm3vvc"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37364066772-n5rou3tqfrpsg67scq5s9s5l3hqo06pr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
