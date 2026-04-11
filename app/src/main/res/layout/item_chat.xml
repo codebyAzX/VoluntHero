@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="12dp"
+    android:background="?attr/selectableItemBackground">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/avatarContainer"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#F0F0F7">
+        <ImageView
+            android:id="@+id/chatAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logoapp" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/chatName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/avatarContainer"
+        android:layout_marginStart="16dp"
+        android:text="UWC Dilijan Support"
+        android:textColor="#1A1A1A"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/chatTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="10:45"
+        android:textColor="#8E8E93"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/lastMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chatName"
+        android:layout_toEndOf="@id/avatarContainer"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_toStartOf="@id/chatTime"
+        android:layout_marginEnd="8dp"
+        android:text="Ваша заявка на волонтерство одобрена! Ждем вас..."
+        android:textColor="#636366"
+        android:textSize="14sp"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+</RelativeLayout>

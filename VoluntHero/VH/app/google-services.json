@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "37364066772",
+    "project_id": "volunthero-cc4d8",
+    "storage_bucket": "volunthero-cc4d8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37364066772:android:38d7e0045f5cacd1cdce41",
+        "android_client_info": {
+          "package_name": "com.example.volunthero"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeAZWO2rHNLWE6sDxoaTaJysNbiZm3vvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

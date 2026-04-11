@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VoluntHero</string>
+    <string name="hello_msg">Բարև!</string>
+
+    <string name="btn_get_started">Սկսել</string>
+    <string name="already_have_account">Արդեն ունեմ հաշիվ</string>
+    <string name="username_hint">Մուտքանուն</string>
+    <string name="password_hint">Գաղտնաբառ</string>
+    <string name="btn_continue">Շարունակել</string>
+    <string name="go_to_reg">Չունե՞ք հաշիվ։ Գրանցվել</string>
+
+    <string name="terms_conditions">Համաձայն եմ պայմաններին և դրույթներին</string>
+    <string name="btn_signup">Գրանցվել</string>
+    <string name="welcome_title">Բարի գալուստ!</string>
+    <string name="btn_login">Մուտք գործել</string>
+    <string name="or_connect_with">Կամ միանալ</string>
+    <string name="no_account_signup">Հաշիվ չունե՞ք։ Գրանցվել</string>
+
+    <string name="reg_title">Ստեղծել հաշիվ</string>
+    <string name="nickname_hint">Մականուն</string>
+    <string name="email_hint">Էլեկտրոնային փոստ</string>
+    <string name="confirm_password_hint">Կրկնել գաղտնաբառը</string>
+    <string name="forgot_password">Մոռացե՞լ եք գաղտնաբառը</string>
+    <string name="btn_register">Գրանցվել</string>
+
+    <string name="role_title">Ձեր դերը</string>
+    <string name="role_volunteer">Կամավոր</string>
+    <string name="role_volunteer_desc">Փնտրում եմ հետաքրքիր նախագծեր</string>
+    <string name="role_organizer">Կազմակերպիչ</string>
+    <string name="role_organizer_desc">Կազմակերպում եմ միջոցառումներ</string>
+    <string name="btn_skip">Բաց թողնել</string>
+
+    <string name="vol_info_title">Կամավորի պրոֆիլ</string>
+    <string name="label_skills">Ձեր հմտությունները (կարող եք ընտրել մի քանիսը)</string>
+
+    <string name="skill_it">ՏՏ / Ծրագրավորում</string>
+    <string name="skill_languages">Լեզուներ (A1–C1, խոսակցական և գրավոր)</string>
+    <string name="eco">Էկոլոգիա և շրջակա միջավայր</string>
+    <string name="skill_design">Դիզայն (UI/UX, գրաֆիկ)</string>
+    <string name="skill_marketing">Մարքեթինգ և SMM</string>
+    <string name="skill_management">Նախագծերի կառավարում</string>
+    <string name="skill_education">Կրթություն և մենթորություն</string>
+    <string name="skill_media">Մեդիա և բովանդակության ստեղծում</string>
+    <string name="skill_events">Միջոցառումների կազմակերպում</string>
+    <string name="skill_research">Հետազոտություն և վերլուծություն</string>
+    <string name="skill_fundraising">Ֆոնդհայթայթում</string>
+    <string name="skill_translation">Թարգմանություն</string>
+
+    <string name="label_experience">Կամավորական փորձ (վերբեռնել վկայականը)</string>
+
+    <string name="btn_upload">Վերբեռնել ֆայլ</string>
+    <string name="btn_finish">Ավարտել</string>
+
+    <string name="step_format">Քայլ %1$d-ը %2$d-ից</string>
+    <string name="your_age">Ձեր տարիքը՝ %1$d</string>
+    <string name="your_interests">Ձեր հետաքրքրությունները</string>
+    <string name="your_skills">Ձեր հմտությունները</string>
+    <string name="experience_docs">Փորձ և վկայականներ</string>
+
+    <string name="btn_next">Հաջորդը</string>
+
+    <string name="verification_title">Վերիֆիկացիա</string>
+    <string name="other_hint">Այլ տարբերակ...</string>
+    <string name="add_skill_hint">Ավելացնել հմտություն...</string>
+
+    <string name="birth_date_title">Ծննդյան ամսաթիվ</string>
+    <string name="interests_title">Հետաքրքրություններ</string>
+    <string name="skills_title">Հմտություններ</string>
+    <string name="experience_title">Փորձ\n(սերտիֆիկատներ)</string>
+    <string name="no_experience">Դեռ փորձ չունեմ</string>
+    <string name="select_files">Ընտրել ֆայլերը</string>
+    <string name="no_files_selected">Ֆայլեր ընտրված չեն</string>
+    <string name="files_selected">Ընտրված են ֆայլեր</string>
+    <string name="welcome_hero">Բարի գալուստ VoluntHero:</string>
+    <string name="step">Քայլ</string>
+    <string name="of"> -ից</string>
+    <string name="btn_back">Հետ</string>
+    <string name="years_unit">տարեկան</string>
+
+    <string-array name="interests_array">
+        <item>Էկոլոգիա</item>
+        <item>Սպորտ</item>
+        <item>Բժշկություն</item>
+        <item>ՏՏ և Տեխնոլոգիաներ</item>
+        <item>Կենդանիներ</item>
+        <item>Օգնություն տարեցներին</item>
+        <item>Կրթություն</item>
+        <item>Արվեստ և Մշակույթ</item>
+    </string-array>
+
+    <string-array name="skills_array">
+        <item>Ծրագրավորում</item>
+        <item>Առաջին օգնություն</item>
+        <item>Վարորդական հմտություններ</item>
+        <item>Օտար լեզուներ</item>
+        <item>Կառավարում</item>
+        <item>Դիզայն</item>
+    </string-array>
+
+    <string name="org_name_title">Կազմակերպության անվանումը</string>
+    <string name="org_type_title">Կազմակերպության տեսակը</string>
+    <string name="org_bio_title">Ձեր կազմակերպության մասին</string>
+    <string name="org_bio_hint">Հակիրճ պատմեք ձեր առաքելության մասին...</string>
+
+    <string-array name="org_types_array">
+        <item>Բարեգործական հիմնադրամ</item>
+        <item>ՀԿ</item>
+        <item>Պետական կառույց</item>
+        <item>Կոմերցիոն կազմակերպություն</item>
+        <item>Անհատ ձեռնարկատեր</item>
+        <item>Մասնավոր նախաձեռնություն</item>
+    </string-array>
+
+    <string name="org_type_error">Ընտրեք տեսակը կամ լրացրեք ձեր տարբերակը</string>
+
+    <string name="select_interests_warning">Խնդրում ենք ընտրել առնվազն մեկ հետաքրքրություն:</string>
+    <string name="select_skills_warning">Խնդրում ենք նշել ձեր հմտությունները:</string>
+    <string name="work_email_hint">Աշխատանքային էլ. փոստ</string>
+    <string name="other_org_hint">Ձեր տարբերակը (օրինակ՝ Ստարտափ...)</string>
+
+    <string name="enter_email">Մուտքագրեք էլ. փոստը</string>
+    <string name="login_error">Մուտքի սխալ</string>
+    <string name="fill_all_fields">Խնդրում ենք լրացնել բոլոր դաշտերը</string>
+    <string name="verification_sent">Հաստատման նամակն ուղարկվել է:</string>
+    <string name="passwords_dont_match">Գաղտնաբառերը չեն համընկնում</string>
+    <string name="error_prefix">Սխալ. </string>
+
+    <string name="email_code_hint">Հաստատման կոդը կուղարկվի այս էլ. փոստին</string>
+    <string name="org_verify_title">Վերիֆիկացիա</string>
+    <string name="org_verify_desc">VoluntHero-ն անվտանգ պահելու համար խնդրում ենք տրամադրել կազմակերպության կոնտակտային էլ. փոստը</string>
+
+    <string name="error_fill_name">Խնդրում ենք մուտքագրել անվանումը</string>
+    <string name="error_select_type">Խնդրում ենք ընտրել կազմակերպության տեսակը</string>
+    <string name="error_fill_bio">Նկարագրությունը պարտադիր է</string>
+    <string name="error_invalid_email">Մուտքագրեք վավեր աշխատանքային էլ. փոստ</string>
+    <string name="welcome_msg">Բարի գալուստ VoluntHero:</string>
+
+    <string name="org_home_title">Կառավարում</string>
+    <string name="vol_home_title">Իմ ակտիվությունը</string>
+
+    <string name="stats_active">Ակտիվ</string>
+    <string name="stats_requests">Դիմումներ</string>
+    <string name="stats_hours">Ժամեր</string>
+    <string name="stats_missions">Առաքելություններ</string>
+
+    <string name="btn_create_project">+ Ստեղծել նախագիծ</string>
+    <string name="btn_find_projects">Գտնել առաքելություններ</string>
+
+    <string name="feedback_title">Հետադարձ կապ</string>
+    <string name="nav_chat">Հաղորդագրություններ</string>
+    <string name="profile_title">Պրոֆիլ</string>
+    <string name="logout">Դուրս գալ</string>
+</resources>

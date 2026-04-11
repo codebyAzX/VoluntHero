@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VoluntHero</string>
+    <string name="hello_msg">hello!</string>
+
+    <string name="btn_get_started">Get Started</string>
+    <string name="already_have_account">I already have an account</string>
+
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="btn_continue">Continue</string>
+    <string name="go_to_reg">No account? Register</string>
+
+    <string name="reg_title">Create an account</string>
+    <string name="nickname_hint">Nickname</string>
+    <string name="email_hint">Email address</string>
+    <string name="confirm_password_hint">Confirm password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="btn_register">Register</string>
+
+
+    <string name="terms_conditions">I agree to the terms and conditions</string>
+    <string name="btn_signup">Sign Up</string>
+    <string name="welcome_title">Welcome Hero!</string>
+    <string name="btn_login">Log In</string>
+    <string name="or_connect_with">Or connect with</string>
+    <string name="no_account_signup">Don\'t have an account? Sign Up</string>
+
+    <string name="role_title">Your role</string>
+    <string name="role_volunteer">Volunteer</string>
+    <string name="role_volunteer_desc">I am looking for interesting projects to join</string>
+    <string name="role_organizer">Organizer</string>
+    <string name="role_organizer_desc">I organize events and manage projects</string>
+
+    <string name="btn_skip">Skip</string>
+
+    <string name="vol_info_title">Volunteer profile</string>
+    <string name="label_skills">Your skills (select multiple)</string>
+
+    <string name="skill_it">IT / Programming</string>
+    <string name="skill_languages">Languages (A1–C1, spoken &amp; written)</string>
+    <string name="eco">Ecology &amp; Environment</string>
+    <string name="skill_design">Design (UI/UX, graphic)</string>
+    <string name="skill_marketing">Marketing &amp; SMM</string>
+    <string name="skill_management">Project management</string>
+    <string name="skill_education">Education &amp; mentoring</string>
+    <string name="skill_media">Media &amp; content creation</string>
+    <string name="skill_events">Event organization</string>
+    <string name="skill_research">Research &amp; analytics</string>
+    <string name="skill_fundraising">Fundraising</string>
+    <string name="skill_translation">Translation</string>
+
+    <string name="label_experience">Volunteer experience (upload certificate)</string>
+
+    <string name="btn_upload">Upload file</string>
+    <string name="btn_finish">Finish</string>
+
+    <string name="step_format">Step %1$d of %2$d</string>
+    <string name="your_age">Your age: %1$d</string>
+    <string name="your_interests">Your interests</string>
+    <string name="your_skills">Your skills</string>
+    <string name="experience_docs">Experience and certificates</string>
+
+    <string name="birth_date_title">Date of Birth</string>
+    <string name="interests_title">Interests</string>
+    <string name="skills_title">Skills</string>
+    <string name="verification_title">Verification</string>
+    <string name="other_hint">Other...</string>
+    <string name="step">Step</string>
+    <string name="of">of</string>
+    <string name="add_skill_hint">Add a skill...</string>
+    <string name="experience_title">Experience\n(Certificates/Docs)</string>
+    <string name="no_experience">I don\'t have experience yet</string>
+    <string name="select_files">Select Files</string>
+    <string name="no_files_selected">No files selected</string>
+    <string name="files_selected">Files selected</string>
+    <string name="welcome_hero">Welcome to VoluntHero!</string>
+    <string name="btn_back">Back</string>
+    <string name="years_unit">years old</string>
+    <string name="btn_next">Next</string>
+
+    <string-array name="interests_array">
+        <item>Ecology</item>
+        <item>Sports</item>
+        <item>Medicine</item>
+        <item>IT &amp; Technology</item>
+        <item>Animals</item>
+        <item>Elderly Help</item>
+        <item>Education</item>
+        <item>Art &amp; Culture</item>
+    </string-array>
+
+    <string-array name="skills_array">
+        <item>Programming</item>
+        <item>First Aid</item>
+        <item>Driving</item>
+        <item>Languages</item>
+        <item>Management</item>
+        <item>Design</item>
+    </string-array>
+
+    <string name="org_name_title">Organization Name</string>
+    <string name="org_type_title">Organization Type</string>
+    <string name="org_bio_title">About Your Organization</string>
+    <string name="org_bio_hint">Briefly tell us about your mission...</string>
+    <string name="org_type_error">Select a type or enter your own option</string>
+
+    <string-array name="org_types_array">
+        <item>Charity Foundation</item>
+        <item>NGO</item>
+        <item>Government Agency</item>
+        <item>Commercial Corp.</item>
+        <item>Private Entrepreneur</item>
+        <item>Private Initiative</item>
+    </string-array>
+
+    <string name="select_interests_warning">Please select at least one interest!</string>
+    <string name="select_skills_warning">Please specify your skills!</string>
+    <string name="work_email_hint">Work email</string>
+    <string name="other_org_hint">Your variant (e.g. Startup, Union...)</string>
+
+    <string name="enter_email">Please enter email</string>
+    <string name="login_error">Login error</string>
+    <string name="fill_all_fields">Please fill in all fields</string>
+    <string name="verification_sent">Verification sent!</string>
+    <string name="passwords_dont_match">Passwords do not match!</string>
+    <string name="error_prefix">Error: </string>
+
+    <string name="email_code_hint">Verification code will be sent to this email</string>
+    <string name="org_verify_title">Verification</string>
+    <string name="org_verify_desc">To keep VoluntHero safe, please provide your organization\'s contact email</string>
+
+    <string name="error_fill_name">Please fill in the name</string>
+    <string name="error_select_type">Please select an organization type</string>
+    <string name="error_fill_bio">Description is required</string>
+    <string name="error_invalid_email">Enter a valid work email</string>
+
+    <string name="welcome_msg">Welcome to VoluntHero!</string>
+    <string name="org_home_title">Management</string>
+    <string name="vol_home_title">My Activity</string>
+    <string name="stats_active">Active</string>
+    <string name="stats_requests">Requests</string>
+    <string name="stats_hours">Hours</string>
+    <string name="stats_missions">Missions</string>
+    <string name="btn_create_project">+ Create project</string>
+    <string name="btn_find_projects">Find missions</string>
+
+    <string name="feedback_title">Feedback</string>
+    <string name="nav_chat">Messages</string>
+    <string name="profile_title">Profile</string>
+    <string name="logout">Logout</string>
+</resources>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VoluntHero</string>
+    <string name="hello_msg">Привет!</string>
+
+    <string name="btn_get_started">Начать</string>
+    <string name="already_have_account">У меня уже есть аккаунт</string>
+    <string name="username_hint">Имя пользователя</string>
+    <string name="password_hint">Пароль</string>
+    <string name="btn_continue">Продолжить</string>
+    <string name="go_to_reg">Нет аккаунта? Зарегистрироваться</string>
+
+    <string name="terms_conditions">Я согласен с условиями использования</string>
+    <string name="btn_signup">Регистрация</string>
+    <string name="welcome_title">Добро пожаловать!</string>
+    <string name="btn_login">Войти</string>
+    <string name="or_connect_with">Или войти через</string>
+    <string name="no_account_signup">Нет аккаунта? Регистрация</string>
+
+    <string name="reg_title">Создать аккаунт</string>
+    <string name="nickname_hint">Никнейм</string>
+    <string name="email_hint">Электронная почта</string>
+    <string name="confirm_password_hint">Повторите пароль</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="btn_register">Зарегистрироваться</string>
+
+    <string name="role_title">Ваша роль</string>
+    <string name="role_volunteer">Волонтер</string>
+    <string name="role_volunteer_desc">Ищу интересные проекты и возможности</string>
+    <string name="role_organizer">Организатор</string>
+    <string name="role_organizer_desc">Организую мероприятия</string>
+
+    <string name="btn_skip">Пропустить</string>
+
+    <string name="vol_info_title">Профиль волонтера</string>
+    <string name="label_skills">Ваши навыки (можно выбрать несколько)</string>
+
+    <string name="skill_it">IT / Программирование</string>
+    <string name="skill_languages">Языки (A1–C1, устно и письменно)</string>
+    <string name="eco">Экология и окружающая среда</string>
+    <string name="skill_design">Дизайн (UI/UX, графика)</string>
+    <string name="skill_marketing">Маркетинг и SMM</string>
+    <string name="skill_management">Управление проектами</string>
+    <string name="skill_education">Образование и наставничество</string>
+    <string name="skill_media">Медиа и создание контента</string>
+    <string name="skill_events">Организация мероприятий</string>
+    <string name="skill_research">Исследования и аналитика</string>
+    <string name="skill_fundraising">Фандрайзинг</string>
+    <string name="skill_translation">Переводы</string>
+
+    <string name="label_experience">Опыт волонтерства (загрузите сертификат)</string>
+
+    <string name="btn_upload">Загрузить файл</string>
+    <string name="btn_finish">Завершить</string>
+
+    <string name="step_format">Шаг %1$d из %2$d</string>
+    <string name="your_age">Ваш возраст: %1$d</string>
+    <string name="your_interests">Ваши интересы</string>
+    <string name="your_skills">Ваши навыки</string>
+    <string name="experience_docs">Опыт и сертификаты</string>
+
+    <string name="btn_next">Далее</string>
+
+    <string name="birth_date_title">Дата рождения</string>
+    <string name="verification_title">Верификация</string>
+    <string name="other_hint">Свой вариант...</string>
+    <string name="add_skill_hint">Добавить навык...</string>
+    <string name="step">Шаг</string>
+    <string name="of">из</string>
+    <string name="interests_title">Ваши интересы</string>
+    <string name="skills_title">Ваши навыки</string>
+    <string name="experience_title">Ваш опыт\n(Сертификаты/Документы)</string>
+    <string name="no_experience">У меня пока нет опыта</string>
+    <string name="select_files">Выбрать файлы</string>
+    <string name="no_files_selected">Файлы не выбраны</string>
+    <string name="files_selected">Выбрано файлов</string>
+    <string name="welcome_hero">Добро пожаловать в VoluntHero!</string>
+    <string name="btn_back">Назад</string>
+    <string name="years_unit">лет</string>
+
+    <string-array name="interests_array">
+        <item>Экология</item>
+        <item>Спорт</item>
+        <item>Медицина</item>
+        <item>IT и Технологии</item>
+        <item>Животные</item>
+        <item>Помощь пожилым</item>
+        <item>Образование</item>
+        <item>Искусство и Культура</item>
+    </string-array>
+
+    <string-array name="skills_array">
+        <item>Программирование</item>
+        <item>Первая помощь</item>
+        <item>Вождение</item>
+        <item>Иностранные языки</item>
+        <item>Менеджмент</item>
+        <item>Дизайн</item>
+    </string-array>
+
+    <string name="org_name_title">Название организации</string>
+    <string name="org_type_title">Тип организации</string>
+    <string name="org_bio_title">О вашей организации</string>
+    <string name="org_bio_hint">Расскажите кратко о вашей миссии...</string>
+
+    <string-array name="org_types_array">
+        <item>Благотворительный фонд</item>
+        <item>НКО</item>
+        <item>Гос. организация</item>
+        <item>Коммерческая корп.</item>
+        <item>Частный предприниматель</item>
+        <item>Частная инициатива</item>
+    </string-array>
+
+    <string name="org_type_error">Выберите тип или введите свой вариант</string>
+    <string name="other_org_hint">Ваш вариант (напр. ЗАО, Стартап...)</string>
+    <string name="work_email_hint">Корпоративная почта</string>
+
+
+    <string name="select_interests_warning">Выберите хотя бы один интерес!</string>
+    <string name="select_skills_warning">Укажите ваши навыки!</string>
+
+    <string name="enter_email">Введите email</string>
+    <string name="login_error">Ошибка входа</string>
+    <string name="fill_all_fields">Заполните все поля!</string>
+    <string name="verification_sent">Письмо для подтверждения отправлено!</string>
+    <string name="passwords_dont_match">Пароли не совпадают!</string>
+    <string name="error_prefix">Ошибка: </string>
+
+    <string name="email_code_hint">Код подтверждения придет на эту почту</string>
+    <string name="org_verify_title">Верификация</string>
+    <string name="org_verify_desc">Для безопасности сообщества VoluntHero, пожалуйста, укажите рабочую почту организации</string>
+
+    <string name="error_fill_name">Пожалуйста, введите название</string>
+    <string name="error_select_type">Пожалуйста, выберите тип организации</string>
+    <string name="error_fill_bio">Описание обязательно для заполнения</string>
+    <string name="error_invalid_email">Введите корректную рабочую почту</string>
+
+    <string name="welcome_msg">Добро пожаловать в VoluntHero!</string>
+
+    <string name="org_home_title">Управление</string>
+    <string name="vol_home_title">Моя активность</string>
+
+    <string name="stats_active">Активные</string>
+    <string name="stats_requests">Заявки</string>
+    <string name="stats_hours">Часы</string>
+    <string name="stats_missions">Миссии</string>
+
+    <string name="btn_create_project">+ Создать проект</string>
+    <string name="btn_find_projects">Найти миссии</string>
+
+    <string name="feedback_title">Обратная связь</string>
+    <string name="nav_chat">Сообщения</string>
+    <string name="profile_title">Профиль</string>
+    <string name="logout">Выйти</string>
+</resources>

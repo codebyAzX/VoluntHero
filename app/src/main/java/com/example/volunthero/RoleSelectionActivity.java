@@ -1,0 +1,86 @@
+package com.example.volunthero;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.os.Bundle;
+import android.view.ViewTreeObserver;
+import android.widget.TextView;
+import com.google.android.material.card.MaterialCardView;
+
+public class RoleSelectionActivity extends BaseActivity {
+
+    private MaterialCardView cardVolunteer, cardOrganizer;
+    private TextView tvRoleTitle, tvVolTitle, tvVolDesc, tvOrgTitle, tvOrgDesc;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_role_selection);
+
+        tvRoleTitle = findViewById(R.id.tvRoleTitle);
+        cardVolunteer = findViewById(R.id.cardVolunteer);
+        cardOrganizer = findViewById(R.id.cardOrganizer);
+        tvVolTitle = findViewById(R.id.tvVolunteerTitle);
+        tvVolDesc = findViewById(R.id.tvVolunteerDesc);
+        tvOrgTitle = findViewById(R.id.tvOrganizerTitle);
+        tvOrgDesc = findViewById(R.id.tvOrganizerDesc);
+
+        setupLocalizedTexts();
+
+        // ВЫЗЫВАЕМ НАШ КОРРЕКТНЫЙ МЕТОД ГРАДИЕНТА
+        if (tvRoleTitle != null) {
+            applyGradientToTitle();
+        }
+
+        // Клик: Переход к волонтеру
+        if (cardVolunteer != null) {
+            cardVolunteer.setOnClickListener(v -> {
+                Intent intent = new Intent(RoleSelectionActivity.this, VolunteerInfoActivity.class);
+                intent.putExtra("USER_ROLE", "volunteer");
+
+                startActivity(intent);
+            });
+        }
+
+        // Клик: Переход к организатору
+        if (cardOrganizer != null) {
+            cardOrganizer.setOnClickListener(v -> {
+                Intent intent = new Intent(RoleSelectionActivity.this, OrganizerInfoActivity.class);
+                intent.putExtra("USER_ROLE", "organizer");
+                startActivity(intent);
+            });
+        }
+    }
+
+    // НАПОЛНЯЕМ ЭТОТ МЕТОД РАБОЧИМ КОДОМ ГРАДИЕНТА
+    private void applyGradientToTitle() {
+        tvRoleTitle.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                tvRoleTitle.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+                float width = tvRoleTitle.getWidth();
+                if (width > 0) {
+                    Shader shader = new LinearGradient(0, 0, width, 0,
+                            new int[]{
+                                    Color.parseColor("#A86BFF"), // Фиолетовый
+                                    Color.parseColor("#38FFD7")  // Бирюзовый
+                            }, null, Shader.TileMode.CLAMP);
+
+                    tvRoleTitle.getPaint().setShader(shader);
+                    tvRoleTitle.invalidate();
+                }
+            }
+        });
+    }
+
+    private void setupLocalizedTexts() {
+        if (tvRoleTitle != null) tvRoleTitle.setText(R.string.role_title);
+        if (tvVolTitle != null) tvVolTitle.setText(R.string.role_volunteer);
+        if (tvVolDesc != null) tvVolDesc.setText(R.string.role_volunteer_desc);
+        if (tvOrgTitle != null) tvOrgTitle.setText(R.string.role_organizer);
+        if (tvOrgDesc != null) tvOrgDesc.setText(R.string.role_organizer_desc);
+    }
+}

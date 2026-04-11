@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_gradient_bg"
+    android:paddingHorizontal="24dp">
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        app:indicatorColor="#FFFFFF"
+        app:trackColor="#40FFFFFF"
+        app:trackThickness="6dp"
+        app:trackCornerRadius="10dp"
+        android:max="2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/layoutButtons"
+        app:layout_constraintTop_toBottomOf="@id/progressBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_background_white"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:elevation="0dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tvStepTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:textColor="#A86BFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:layout_marginBottom="16dp"/>
+
+            <LinearLayout
+                android:id="@+id/stepOrgMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/org_name_title"
+                    android:textColor="#1A1A1A"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
+
+                <EditText
+                    android:id="@+id/etOrgName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="VoluntHero Team"
+                    android:textColor="#1A1A1A"
+                    android:backgroundTint="#A86BFF"
+                    android:textColorHint="#9F9F9F"
+                    android:layout_marginBottom="24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/org_type_title"
+                    android:textColor="#1A1A1A"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupOrgType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:chipSpacing="10dp" />
+
+                <EditText
+                    android:id="@+id/etOtherOrgType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/other_org_hint"
+                    android:textColor="#1A1A1A"
+                    android:backgroundTint="#A86BFF"
+                    android:textSize="15sp"
+                    android:textColorHint="#9F9F9F"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stepOrgBio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/org_bio_title"
+                    android:textColor="#1A1A1A"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
+
+                <EditText
+                    android:id="@+id/etOrgBio"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:hint="@string/org_bio_hint"
+                    android:textColor="#1A1A1A"
+                    android:gravity="top"
+                    android:background="@drawable/btn_light_gray"
+                    android:padding="16dp"
+                    android:textColorHint="#9F9F9F"
+                    android:maxLength="600" />
+
+                <TextView
+                    android:id="@+id/tvCharCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:text="0/600"
+                    android:textColor="#9F9F9F"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layoutButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="12dp"
+            android:text="@string/btn_back"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_light_gray"
+            android:textColor="#1A1A1A"
+            android:elevation="0dp"
+            android:visibility="gone"
+            android:stateListAnimator="@null"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="2"
+            android:background="@drawable/btn_solid_purple"
+            android:text="@string/btn_next"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
