@@ -1,21 +1,14 @@
 package com.example.volunthero;
 
-import static android.app.PendingIntent.getActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.StyleSpan;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,8 +16,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.BreakIterator;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends BaseActivity {
 
@@ -34,7 +30,7 @@ public class RegisterActivity extends BaseActivity {
     private Button btnRegister;
     private CheckBox cbTerms;
     private FirebaseAuth mAuth;
-    EditText etName, etAge;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +38,8 @@ public class RegisterActivity extends BaseActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+        // Using explicit URL to ensure it connects to the correct European region
+        mDatabase = FirebaseDatabase.getInstance("https://volunthero-cc4d8-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
         tvRegTitle = findViewById(R.id.tvRegTitle);
         etUsername = findViewById(R.id.etUsername);
@@ -52,26 +50,25 @@ public class RegisterActivity extends BaseActivity {
         btnRegister = findViewById(R.id.btnRegister);
         tvBackToLogin = findViewById(R.id.tvBackToLogin);
         cbTerms = findViewById(R.id.cbTerms);
-        String fullText = "hello!";
 
+        if (tvRegTitle != null) {
+            String fullText = "VoluntHero";
+            SpannableString spannable = new SpannableString(fullText);
+            tvRegTitle.setText(spannable);
 
-        SpannableString spannable = new SpannableString(fullText);
+            tvRegTitle.post(() -> {
+                if (tvRegTitle.getWidth() > 0) {
+                    Shader shader = new LinearGradient(
+                            0, 0, tvRegTitle.getWidth(), 0,
+                            new int[]{Color.parseColor("#a86bff"), Color.parseColor("#38FFD7")},
+                            null, Shader.TileMode.CLAMP);
+                    tvRegTitle.getPaint().setShader(shader);
+                    tvRegTitle.invalidate();
+                }
+            });
+        }
 
-        spannable.setSpan(new StyleSpan(Typeface.ITALIC), 5, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        tvRegTitle.setText(spannable);
-
-
-        tvRegTitle.post(() -> {
-            if (tvRegTitle.getWidth() > 0) {
-                Shader shader = new LinearGradient(
-                        0, 0, tvRegTitle.getWidth(), 0,
-                        new int[]{Color.parseColor("#a86bff"), Color.parseColor("#38FFD7")},
-                        null, Shader.TileMode.CLAMP);
-                tvRegTitle.getPaint().setShader(shader);
-                tvRegTitle.invalidate();
-            }
-        });
+        btnRegister.setOnClickListener(v -> registerUser());
 
         tvBackToLogin.setOnClickListener(v -> {
             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
@@ -106,25 +103,35 @@ public class RegisterActivity extends BaseActivity {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
+                        FirebaseUser fUser = mAuth.getCurrentUser();
+                        if (fUser != null) {
+                            Map<String, Object> userMap = new HashMap<>();
+                            userMap.put("uid", fUser.getUid());
+                            userMap.put("username", username);
+                            userMap.put("email", email);
+                            userMap.put("status", "incomplete");
 
-                        SharedPreferences prefs = getSharedPreferences("VolunteerPrefs", MODE_PRIVATE);
-                        prefs.edit().putString("user_name", username).apply();
+                            mDatabase.child("users").child(fUser.getUid())
+                                    .setValue(userMap)
+                                    .addOnSuccessListener(aVoid -> {
+                                        SharedPreferences prefs = getSharedPreferences("VolunteerPrefs", MODE_PRIVATE);
+                                        prefs.edit().putString("user_name", username).apply();
 
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        if (user != null) {
-                            user.sendEmailVerification().addOnCompleteListener(verifyTask -> {
-                                Toast.makeText(this, getString(R.string.verification_sent), Toast.LENGTH_LONG).show();
-
-                                Intent intent = new Intent(RegisterActivity.this, RoleSelectionActivity.class);
-                                startActivity(intent);
-                                finish();
-                            });
+                                        fUser.sendEmailVerification();
+                                        Toast.makeText(this, getString(R.string.verification_sent), Toast.LENGTH_LONG).show();
+                                        
+                                        Intent intent = new Intent(RegisterActivity.this, RoleSelectionActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(this, "Database Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                    });
                         }
                     } else {
                         String errorMessage = task.getException() != null ? task.getException().getMessage() : "Unknown error";
-                        Toast.makeText(RegisterActivity.this, "Error: " + errorMessage, Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterActivity.this, "Auth Error: " + errorMessage, Toast.LENGTH_LONG).show();
                     }
                 });
     }
-
 }

@@ -6,7 +6,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -16,6 +15,10 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class VolunteerInfoActivity extends BaseActivity {
 
@@ -27,15 +30,18 @@ public class VolunteerInfoActivity extends BaseActivity {
     private ChipGroup chipGroupInterests, chipGroupSkills;
     private int currentStep = 1;
     private EditText etSkills;
-    //էլի դերի փոփոպական
     private String userRole;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteer_info);
 
-        //ստանում ենք դերը
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance("https://volunthero-cc4d8-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+
         userRole = getIntent().getStringExtra("USER_ROLE");
 
         initViews();
@@ -66,7 +72,7 @@ public class VolunteerInfoActivity extends BaseActivity {
                     currentStep++;
                     updateUI();
                 } else {
-                    finishForm(); //=> Main
+                    finishForm();
                 }
             }
         });
@@ -167,10 +173,7 @@ public class VolunteerInfoActivity extends BaseActivity {
                 tvCalculatedAge.setText(age + " " + getString(R.string.years_unit));
             });
         }
-
     }
-
-
 
     private void updateUI() {
         stepAge.setVisibility(currentStep == 1 ? View.VISIBLE : View.GONE);
@@ -185,34 +188,42 @@ public class VolunteerInfoActivity extends BaseActivity {
     }
 
     private void finishForm() {
+        FirebaseUser fUser = mAuth.getCurrentUser();
+        if (fUser == null) return;
+
         SharedPreferences prefs = getSharedPreferences("VolunteerPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
+        String username = prefs.getString("user_name", "Anonymous");
+        String email = fUser.getEmail();
+        String uid = fUser.getUid();
 
         DatePicker dp = findViewById(R.id.datePicker);
         int year = dp.getYear();
         int calculatedAge = 2026 - year;
-        editor.putString("user_age", String.valueOf(calculatedAge));
 
         String interests = getCheckedChipsText(chipGroupInterests);
-        editor.putString("user_interests", interests);
-
         String skills = getCheckedChipsText(chipGroupSkills);
         String manualSkill = etSkills.getText().toString().trim();
         if (!manualSkill.isEmpty()) {
             skills += (skills.isEmpty() ? "" : ", ") + manualSkill;
         }
-        editor.putString("user_skills", skills);
 
+        User user = new User(uid, username, email, "volunteer");
+        user.age = String.valueOf(calculatedAge);
+        user.interests = interests;
+        user.skills = skills;
 
-        editor.apply();
-
-        Toast.makeText(this, getString(R.string.welcome_hero), Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("USER_ROLE", userRole);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
+        mDatabase.child("volunteers").child(uid).setValue(user)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, getString(R.string.welcome_hero), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    intent.putExtra("USER_ROLE", "volunteer");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error saving data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 
     private String getCheckedChipsText(ChipGroup group) {

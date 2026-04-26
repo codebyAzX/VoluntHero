@@ -1,6 +1,7 @@
 package com.example.volunthero;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +16,10 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class OrganizerInfoActivity extends BaseActivity {
 
@@ -27,11 +32,16 @@ public class OrganizerInfoActivity extends BaseActivity {
     private TextView tvCharCount;
     private int currentStep = 1;
     private String userRole;
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organizer_info);
+
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance("https://volunthero-cc4d8-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
         userRole = getIntent().getStringExtra("USER_ROLE");
 
@@ -133,13 +143,13 @@ public class OrganizerInfoActivity extends BaseActivity {
                 showToast(R.string.error_select_type);
                 return false;
             }
-            if (etOrgBio.getText().toString().length() > 600) {
-                Toast.makeText(this, "Описание слишком длинное (макс. 600 симв.)", Toast.LENGTH_SHORT).show();
-                return false;
-            }
         } else if (currentStep == 2) {
             if (etOrgBio.getText().toString().trim().isEmpty()) {
                 showToast(R.string.error_fill_bio);
+                return false;
+            }
+            if (etOrgBio.getText().toString().length() > 600) {
+                Toast.makeText(this, "Описание слишком длинное (макс. 600 симв.)", Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
@@ -172,13 +182,44 @@ public class OrganizerInfoActivity extends BaseActivity {
     }
 
     private void finishForm() {
+        FirebaseUser fUser = mAuth.getCurrentUser();
+        if (fUser == null) return;
 
+        SharedPreferences prefs = getSharedPreferences("VolunteerPrefs", MODE_PRIVATE);
+        String username = prefs.getString("user_name", "Anonymous");
+        String email = fUser.getEmail();
+        String uid = fUser.getUid();
 
-        Toast.makeText(this, "Welcome to VoluntHero!", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("USER_ROLE", userRole);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
+        String orgName = etOrgName.getText().toString().trim();
+        String bio = etOrgBio.getText().toString().trim();
+        
+        String orgType = "";
+        int checkedId = chipGroupOrgType.getCheckedChipId();
+        if (checkedId != View.NO_ID) {
+            Chip chip = findViewById(checkedId);
+            orgType = chip.getText().toString();
+        }
+        String otherType = etOtherOrgType.getText().toString().trim();
+        if (!otherType.isEmpty()) {
+            orgType = (orgType.isEmpty() ? "" : orgType + ", ") + otherType;
+        }
+
+        User user = new User(uid, username, email, "organizer");
+        user.orgName = orgName;
+        user.orgType = orgType;
+        user.bio = bio;
+
+        mDatabase.child("organizers").child(uid).setValue(user)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "Welcome to VoluntHero!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    intent.putExtra("USER_ROLE", "organizer");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error saving data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 }
