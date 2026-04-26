@@ -15,10 +15,8 @@ public class User {
     public String bio;
 
     public User() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    // Constructor for common fields
     public User(String uid, String username, String email, String role) {
         this.uid = uid;
         this.username = username;

@@ -29,12 +29,10 @@ public class RoleSelectionActivity extends BaseActivity {
 
         setupLocalizedTexts();
 
-        // ВЫЗЫВАЕМ НАШ КОРРЕКТНЫЙ МЕТОД ГРАДИЕНТА
         if (tvRoleTitle != null) {
             applyGradientToTitle();
         }
 
-        // Клик: Переход к волонтеру
         if (cardVolunteer != null) {
             cardVolunteer.setOnClickListener(v -> {
                 Intent intent = new Intent(RoleSelectionActivity.this, VolunteerInfoActivity.class);
@@ -44,7 +42,6 @@ public class RoleSelectionActivity extends BaseActivity {
             });
         }
 
-        // Клик: Переход к организатору
         if (cardOrganizer != null) {
             cardOrganizer.setOnClickListener(v -> {
                 Intent intent = new Intent(RoleSelectionActivity.this, OrganizerInfoActivity.class);
@@ -54,7 +51,6 @@ public class RoleSelectionActivity extends BaseActivity {
         }
     }
 
-    // НАПОЛНЯЕМ ЭТОТ МЕТОД РАБОЧИМ КОДОМ ГРАДИЕНТА
     private void applyGradientToTitle() {
         tvRoleTitle.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
